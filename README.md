@@ -2,10 +2,10 @@
  > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# \<Project title\>
+# Restaurant Simulator
  > Your author list below should include links to all members GitHub (remove existing author).
  
- > Authors: \<[Jeffrey McDaniel](https://github.com/jmcda001)\>
+ > Authors: [Suhani Bhanvadia](https://github.com/suhanihb), [Suhani Chaudhary](https://github.com/suhanic44), [Satvi Kammula](https://github.com/Satvi-Kammula), [Vaneesha Singh](https://github.com/vsingh9)
 
  > You will be forming a group of **FOUR** students and working on an interesting project. The project has 4 phases, each one with specific requirements. A list of proposed project ideas that have been successful in previous quarters is listed in the project specifications document on Canvas. You can select an idea from the list and start thinking about the features you will implement. If you want to propose your own original idea, you will have to contact your instructor to discuss the project and obtain written permission before you submit your project proposal (Phase 1). The project work should be divided almost equally among team members. You can of course help each other, but it needs to be clear who will be responsible for which features. Additionally, you are expected to follow Scrum patterns, specifically the use of a Scrum (Project) board, Sprints, and Scrum meetings.
 
@@ -18,7 +18,7 @@
 
 ## Project Description
  > Your project description should summarize the project you are proposing. Be sure to include:
- > * Why is it important or interesting to you?
+ > * The project we are going to complete is a restaurant simulator game. This game will allow the user to play as various characters present in a restaurant, and experience the day to day tasks each character faces. We are also intending it to be like a "Text Based Role-Playing Game", where the user will face various tasks along the way. Considering the fact that some of us are experienced in the food industry, we also wanted to put the user in the shoes of various employees to show the complexity of completing certain tasks. However, this project caught our interest because we have all grown up playing computer games similar to this. In fact, the idea of being able to code a terminal based game using the skills we currently possess was exciting to us, and encouraged us to formulate a project that anyone could find entertaining.  
  > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
  > * What will be the input/output of your project?
  > * What are the features that the project provides?
