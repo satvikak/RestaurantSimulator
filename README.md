@@ -43,13 +43,13 @@
 ## User Interface Specification
  > Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from [this template](https://redirect.cs.umbc.edu/~mgrass2/cmsc345/Template_UI.doc))
 
-### [Navigation Diagram]
+### Navigation Diagram
 > ![Navigation Diagram drawio](https://user-images.githubusercontent.com/129975596/236902494-14ac1d05-3dbe-4d88-be37-40cb19697e6f.png)
 
-### [Screen Layouts]
+### Screen Layouts
 > An example of our Screen Layout can be accessed by [clicking this link](https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/files/11424068/Restaurant.Game.Screen.Layout.pdf)
 
-## [Class Diagram]
+## Class Diagram
  > ![Restaurant Class UML Diagram](https://user-images.githubusercontent.com/129975596/236901920-3de228c7-4f95-4142-bda7-3f6cab2a5729.png)
  
  > The Restaurant class is responsible for setting up the name of the restaurant. It contains a lot of the main functionality that different classes will need access to. The balance function will be increased every time the Customer pays their bill, and decreased anytime the Chef cooks meals incorrectly or the Server serves meals to the wrong customers. The rating will be received from the Customer, which will be evaluated at the end of each cycle to determine whether the game can continue or not. The menu will be stored in the Restaurant class, where the Manager has access to adding or deleting items from the menu. The menu will also be used by the Server and Customer classes to display and view the menu, respectively. An  additional aspect of the Restaurant class is the floorPlan. This will be implemented through a 2d array which will contain pointers to table objects. The method for the floorPlan will be protected, which allows all the employees to have access to it, including the server. The purpose of the floorPlan is to allow the server to seat the customers at an open table and keep track of which tables are occupied. Each table in the floorPlan will be given a number which will be used to keep track of which orders are from which groups of customers.
