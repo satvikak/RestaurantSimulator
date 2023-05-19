@@ -47,7 +47,9 @@
 > ![Navigation Diagram drawio](https://user-images.githubusercontent.com/129975596/236902494-14ac1d05-3dbe-4d88-be37-40cb19697e6f.png)
 
 ### Screen Layouts
-> An example of our Screen Layout can be accessed by [clicking this link](https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/files/11424068/Restaurant.Game.Screen.Layout.pdf)
+> <img width="517" alt="Screenshot 2023-05-19 at 9 57 17 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/cdbc95c4-e9b8-4dd3-874f-2cc82279b2c4">
+> <img width="517" alt="Screenshot 2023-05-19 at 9 57 44 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/4e242997-782a-4c04-a461-77a4e03719b8">
+> <img width="517" alt="Screenshot 2023-05-19 at 9 58 09 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/cb5c9d1b-3df8-4a1b-ac36-4c70dd18b2c5">
 
 ## Class Diagram
  > ![Restaurant Class UML Diagram](https://user-images.githubusercontent.com/129975596/236901920-3de228c7-4f95-4142-bda7-3f6cab2a5729.png)
