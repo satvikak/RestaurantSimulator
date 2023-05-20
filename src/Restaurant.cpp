@@ -9,15 +9,15 @@ Restaurant::Restaurant() {
     rating = 0.0;
 }
 
+Restaurant::~Restaurant() {
+    
+}
+
+void Restaurant::setRestaurantName(string restName) {
+
+}
+
 const string& Restaurant::getRestaurantName() const {
-
-}
-
-void Restaurant::setName(string restName) {
-
-}
-
-const double Restaurant::getBalance() {
 
 }
 
@@ -25,10 +25,14 @@ void Restaurant::setBalance(double restBalance) {
 
 }
 
-const double Restaurant::getRating() {
+const double Restaurant::getBalance() {
 
 }
 
 void Restaurant::setRating(double restRating) {
+
+}
+
+const double Restaurant::getRating() {
 
 }
