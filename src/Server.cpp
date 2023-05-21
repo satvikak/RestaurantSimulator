@@ -1,11 +1,16 @@
 #include "../header/Server.h"
 #include "../header/Employee.h"
+#include "../header/Order.h" //include Order.h to work with takeOrder()
 
 #include <iostream>
 using namespace std;
 
 Server::Server() {
 
+}
+
+Server::~Server() {
+    
 }
 
 void Server::seatCustomer() {

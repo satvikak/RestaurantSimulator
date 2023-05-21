@@ -9,6 +9,7 @@ using namespace std;
 class Server : public Employee  {
     public:
         Server();
+        ~Server();
         void seatCustomer();
         void displayMenu();
         void takeOrder();

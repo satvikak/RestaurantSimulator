@@ -9,6 +9,7 @@ class Customer {
         int groupSize;
 
         Customer();
+        ~Customer();
         int generateOrders();
         int payBill();
         double generateRating();

@@ -9,11 +9,15 @@ Restaurant::Restaurant() {
     rating = 5.0;
 }
 
+Restaurant::~Restaurant() {
+    
+}
+
 const string& Restaurant::getRestaurantName() const {
     return restaurantName;
 }
 
-void Restaurant::setName(string restName) {
+void Restaurant::setRestaurantName(string restName) {
     restaurantName = restName;
 }
 

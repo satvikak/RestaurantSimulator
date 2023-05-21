@@ -9,6 +9,7 @@ using namespace std;
 class Chef : public Employee {
     public:
         Chef();
+        ~Chef();
         string viewOrdersList();
         bool makeOrder();
         void removeOrder();

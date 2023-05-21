@@ -7,6 +7,10 @@ Customer::Customer() {
     groupSize = 0;
 }
 
+Customer::~Customer() {
+    
+}
+
 int Customer::generateOrders() {
 
 }

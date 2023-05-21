@@ -7,12 +7,13 @@ using namespace std;
 class Restaurant {
     public:
         Restaurant();
+        ~Restaurant();
+        void setRestaurantName(string restName);
         const string& getRestaurantName() const;
-        void setName(string restName);
-        const double getBalance();
         void setBalance(double restBalance);
-        const double getRating();
+        const double getBalance();
         void setRating(double restRating);
+        const double getRating();
     
     private:
         string restaurantName;
@@ -21,7 +22,6 @@ class Restaurant {
     
     protected:
         //char floorPlan[][]; //char array?
-        string menuList; //linked list
 };
 
 #endif
