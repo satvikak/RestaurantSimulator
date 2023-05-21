@@ -1,6 +1,8 @@
 #ifndef MANAGER_H
 #define MANAGER_H
 
+#include "../header/Employee.h"
+
 #include <iostream>
 using namespace std;
 
@@ -24,7 +26,7 @@ class MenuNode {
         string foodItem;
 };
 
-class Manager {
+class Manager : public Employee {
     public:
         Manager();
         ~Manager();
@@ -32,6 +34,7 @@ class Manager {
         void changeMenuPrice(int itemNumber, double newPrice);
         void viewFullMenu();
         bool isEmpty();
+        void printCharacterDetails();
     
     private:
         MenuNode* head;

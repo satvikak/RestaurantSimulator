@@ -1,4 +1,5 @@
 #include "../header/Manager.h"
+#include "../header/Employee.h"
 
 #include <iostream>
 using namespace std;
@@ -134,3 +135,11 @@ void Manager::viewFullMenu() {
 bool Manager::isEmpty() {
     return ((head == nullptr) && (tail == nullptr));
 }
+
+//print manager name prompt
+void Manager::printCharacterDetails() {
+    string name;
+    cout << "Enter your manager name: ";
+    getline(cin, name);
+    Employee::setEmployeeName(name);
+    cout << endl << "You are officially Manager " << name << "!" << endl;
