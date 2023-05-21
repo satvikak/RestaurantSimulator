@@ -7,6 +7,7 @@ using namespace std;
 class Chef {
     public:
         Chef();
+        ~Chef();
         string viewOrdersList();
         bool makeOrder();
         void removeOrder(); 
