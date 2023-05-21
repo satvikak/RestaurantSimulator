@@ -20,7 +20,7 @@ class Restaurant {
         double rating;
     
     protected:
-        char floorPlan[][]; //char array?
+        //char floorPlan[][]; //char array?
         string menuList; //linked list
 };
 
