@@ -18,7 +18,7 @@ int main() {
     string restaurantName;
     cout << "Enter a name for your restaurant: ";
     getline(cin, restaurantName);
-    r.setName(restaurantName);
+    r.setRestaurantName(restaurantName);
 
     while (r.getBalance() > 0 && r.getRating() > 0) {
         //manager screen
@@ -120,12 +120,12 @@ int main() {
         //evaluate results (check balance, rating, etc) and go back to start if results pass
         cout << r.getRestaurantName() << "Review: " << r.getRating() << "/5 Stars." << endl;
         cout << r.getRestaurantName() << "Balance: " << r.getBalance() << "$" << endl;
-    }
 
-//delete anything allocated with new or any objects in the end
-    delete myMenu;
-    //delete myOrder;
-    //delete newMenuItem; //compiler error when trying to delete
+        //delete anything allocated with new or any objects in the end
+        delete myMenu;
+        //delete myOrder;
+        //delete newMenuItem; //compiler error when trying to delete
+    }
 
     return 0;
 }

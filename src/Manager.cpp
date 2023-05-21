@@ -143,3 +143,4 @@ void Manager::printCharacterDetails() {
     getline(cin, name);
     Employee::setEmployeeName(name);
     cout << endl << "You are officially Manager " << name << "!" << endl;
+}
