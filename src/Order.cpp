@@ -5,7 +5,6 @@
 #include <list>
 using namespace std;
 
-
 //remove a single order from the front of the list
 //can be used by chef or server when done cooking or serving meals, respectively
 void Order::removeOrder() {
@@ -37,4 +36,3 @@ void Order::printOrders() {
         ordersList.at(i).printOrder();
     }
 }
-

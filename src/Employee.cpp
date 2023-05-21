@@ -7,10 +7,14 @@ Employee::Employee() {
     employeeName = "";
 }
 
-void Employee::setEmployeeName(string empName) {
+Employee::~Employee() {
+    
+}
 
+void Employee::setEmployeeName(string empName) {
+    employeeName = empName;
 }
 
 const string& Employee::getEmployeeName() const {
-
+    return employeeName;
 }

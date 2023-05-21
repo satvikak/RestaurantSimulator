@@ -19,7 +19,6 @@ class Order {
     private:
         vector<OrderNode> ordersList;
         int numMenuItems;
-        
 };
 
 #endif
