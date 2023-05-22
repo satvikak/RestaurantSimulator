@@ -1,21 +1,9 @@
 #include "../header/Order.h"
+#include "../header/Customer.h"
 
 #include <iostream>
 #include <list>
 using namespace std;
-
-Order::Order() {
-
-}
-
-Order::~Order() {
-
-}
-
-//add order numbers from customer to ordersList
-void Order::addOrder(int orderNum) {
-    ordersList.push_back(orderNum);
-}
 
 //remove a single order from the front of the list
 //can be used by chef or server when done cooking or serving meals, respectively
@@ -24,8 +12,7 @@ void Order::removeOrder() {
         cout << "List of orders is empty" << endl; //throw?
         return;
     }
-
-    ordersList.pop_front(); //delete from front since it's a queue
+    ordersList.erase(ordersList.begin());
 }
 
 //remove all orders from the list when the game resets
@@ -35,12 +22,17 @@ void Order::removeAllOrders() {
     }
 }
 
+vector<OrderNode>& Order::getOrdersList() {
+    return ordersList;
+}
+
 void Order::viewAllOrders() {
-    cout << "Current Orders: ";
+    cout << "Current Orders: " << endl;
+    printOrders();
+}
 
-    for (int i : ordersList) {
-        cout << i << " ";
+void Order::printOrders() {
+    for (int i = 0; i < ordersList.size(); i++) {
+        ordersList.at(i).printOrder();
     }
-
-    cout << endl;
 }
