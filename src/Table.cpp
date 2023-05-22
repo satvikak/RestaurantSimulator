@@ -10,6 +10,10 @@ Table::Table() {
     billAmount = 0.0;
 }
 
+Table::~Table() {
+    
+}
+
 void Table::setCustomerName(string custName) {
     return;
 }
