@@ -2,6 +2,10 @@
 #define RESTAURANT_H
 
 #include <iostream>
+#include <vector>
+
+#include "../header/Table.h"
+
 using namespace std;
 
 class Restaurant {
@@ -13,15 +17,18 @@ class Restaurant {
         void setBalance(double restBalance);
         const double getRating();
         void setRating(double restRating);
-    
+        void createFloorPlan();
+        void simulateRestaurant();
+
     private:
         string restaurantName;
         double restaurantBalance;
         double rating;
+        int numTables;
     
     protected:
-        char floorPlan[][]; //char array?
         string menuList; //linked list
+        Table **myTables;
 };
 
 #endif

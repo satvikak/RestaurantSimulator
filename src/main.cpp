@@ -1,14 +1,16 @@
-#include "../header/Chef.h"
-#include "../header/Customer.h"
-#include "../header/Employee.h"
-#include "../header/Manager.h"
 #include "../header/Restaurant.h"
-#include "../header/Server.h"
-#include "../header/Table.h"
 
 #include <iostream>
 using namespace std;
 
 int main() {
+    cout << endl << "Welcome to your new restaurant!" << endl;
+    cout << "Enter 'QUIT' at any time to end the game" << endl << endl;
 
+    Restaurant* myRestaurant = new Restaurant();
+
+    myRestaurant->simulateRestaurant();
+
+
+    return 0;
 }
