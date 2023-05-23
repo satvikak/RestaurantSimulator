@@ -28,6 +28,7 @@ void Chef::removeOrder() {
 void Chef::printCharacterDetails() {
     string name;
     cout << "Enter your chef name: ";
+    cin.ignore();
     getline(cin, name);
     Employee::setEmployeeName(name);
     cout << endl << "You are officially Chef " << name << "!" << endl;

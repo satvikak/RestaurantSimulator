@@ -32,6 +32,7 @@ void Server::serveCustomer() {
 void Server::printCharacterDetails() {
     string name;
     cout << "Enter your server name: ";
+    cin.ignore();
     getline(cin, name);
     Employee::setEmployeeName(name);
     cout << endl << "You are officially Server " << name << "!" << endl;
