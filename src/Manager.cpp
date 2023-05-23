@@ -17,6 +17,7 @@ MenuNode::MenuNode(int mNumber, string fType, string fItem, double fPrice) {
     menuNumber = mNumber;
     foodItem = fItem;
     foodPrice = fPrice;
+    next = nullptr;
 
     //store foodType in node as full word, instead of just letter
     if (fType == "a") {
@@ -120,7 +121,7 @@ void Manager::viewFullMenu() {
 
     cout << "--RESTAURANT MENU--" << endl;
 
-    while (curr != nullptr) {
+    while (curr!=nullptr) {
         curr->printMenuNode();
         cout << endl;
 

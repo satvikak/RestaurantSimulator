@@ -22,7 +22,7 @@ Restaurant::Restaurant() {
 }
 
 Restaurant::~Restaurant() {
-    
+
 }
 
 const string& Restaurant::getRestaurantName() const {
@@ -128,7 +128,7 @@ void Restaurant::createFloorPlan() {
 
 void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
     //initial restaurant setup
-    string restaurantName;
+    string restaurantName = "";
     cout << "Enter a name for your restaurant: ";
     getline(cin, restaurantName);
     this->setRestaurantName(restaurantName);
@@ -144,9 +144,9 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         Manager* myMenu = new Manager();
 
         int _menuNumber = 0;
-        string _foodType;
-        string _foodItem;
-        double _foodPrice;
+        string _foodType = "x";
+        string _foodItem = "x";
+        double _foodPrice = 0;
         char userInput = 'y';
 
         while (userInput != 'n') {  //include user input validation
@@ -228,7 +228,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         //server screen
         cout << "You are now Server " << s.Employee::getEmployeeName() << "!" << endl;
 
-            //serve customers their food in correct order
+        //serve customers their food in correct order
 
 
         //evaluate results (check balance, rating, etc) and go back to start if results pass
@@ -237,8 +237,12 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
         //delete anything allocated with new or any objects in the end
         delete myMenu;
-        //delete myOrder;
-        //delete newMenuItem; //compiler error when trying to delete
+        delete myOrder;
+        for(unsigned int row=0; row<numTables; ++row) {
+            delete myTables[row];
+        }
+        delete[] myTables;
+        // //delete newMenuItem; //compiler error when trying to delete (Valgrind looks fine)
     }
 
 }
