@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <stdlib.h>
 using namespace std;
 
 Restaurant::Restaurant() {
@@ -128,6 +129,7 @@ void Restaurant::createFloorPlan() {
 
 void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
     //initial restaurant setup
+    srand(time(NULL));
     string restaurantName = "";
     cout << "Enter a name for your restaurant: ";
     getline(cin, restaurantName);
@@ -183,42 +185,57 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         this->createFloorPlan();
 
         //seat a customer
-        int chosenTable = -1;
-        cout<<"Enter a number corresponding to an open table: ";
-        cin>>chosenTable;
-        cout<<"Open seats at Table #"<<chosenTable<<": "<<myTables[chosenTable-1]->getSeats()<<endl;
-
-        //display menu
-
-        //take orders (feel free to edit this later, I was just compiler testing the Order class)
-        int numOrders;
-        int customerOrder;
-        Order* myOrder = new Order(); //pointer object?
-
-        cout << "Time to order your food! First, how many things would you like to order?" << endl;
-        cout << "Enter a number: ";
-        cin >> numOrders;
+        Customer* newCustomers = new Customer(names, _menuNumber);
+        int groupSize = newCustomers->getGroupSize();
+        cout << endl;
+        cout << "Your first task is to seat new customers." << endl;
+        cout << "Looks like there's a group of " << groupSize;
+        if (groupSize < 2) {
+            cout << " person ";
+        } else {
+            cout << " people ";
+        }
+        cout << "waiting to be seated!" << endl;
         cout << endl;
 
-        cout << "Great! Now, enter the menu number (1 - " << _menuNumber << ") of what you'd like to order!" << endl;
-        cout << "My Order:" << endl;
 
-        //Creates error due to no addOrder function
-        // for (int i = 1; i <= numOrders; ++i) {
-        //     cout << i << ") ";
-        //     cin >> customerOrder;
-        //     myOrder->addOrder(customerOrder);
-        // }
+        int chosenTableNumber = -1;
+        char input = 'y';
+        do {
+            cout<<"Enter a number corresponding to an open table: ";
+            cin>>chosenTableNumber;
+            cout << endl;
+            cout<<"Open seats at Table #"<<chosenTableNumber<<": "<<myTables[chosenTableNumber-1]->getSeats()<<endl;
+            if (!myTables[chosenTableNumber-1]->getAvailability()) {
+                cout << "This table is occupied. Choose another." << endl; 
+            } else {
+                cout << "This table is free! Would you like to seat the customers here? ('y' = yes, 'n' = no): ";
+                cin >> input;
+            }
+        } while (!myTables[chosenTableNumber-1]->getAvailability() || input == 'n');
+        Table* chosenTable = myTables[chosenTableNumber-1];
+        chosenTable->setCustomerGroup(newCustomers);
+
+        // Take customer order
+        cout << endl;
+        cout << "Great! They love their seats. Your next job is to take their order." << endl;
+        cout << "Type 'y' when you are ready: ";
+        char enter;
+        cin >> enter;
+
+        // view orders
+        cout << "You asked them for their order, This is what they want: " << endl;
+        cout << endl;
+        Order customerOrders;
+        newCustomers->generateOrders(customerOrders.getOrdersList());
+        customerOrders.printOrders();
 
         cout << endl;
-        cout << "Thanks for ordering! Your food will be right up!" << endl;
+        cout << "Wonderful! Now that you have the orders, it's time for the chef to make the items..." << endl;
+
 
         //chef screen
         c.printCharacterDetails();
-
-        //view list of orders (feel free to edit this later, I was just compiler testing the Order class)
-        myOrder->viewAllOrders();
-        cout << endl;
 
         //make customers' orders
 
@@ -230,14 +247,13 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
         //serve customers their food in correct order
 
-
         //evaluate results (check balance, rating, etc) and go back to start if results pass
         cout << this->getRestaurantName() << " Review: " << this->getRating() << "/5 Stars." << endl;
         cout << this->getRestaurantName() << " Balance: $" << this->getBalance() << endl << endl;
 
         //delete anything allocated with new or any objects in the end
         delete myMenu;
-        delete myOrder;
+        //delete myOrder;
         for(unsigned int row=0; row<numTables; ++row) {
             delete myTables[row];
         }

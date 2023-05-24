@@ -2,21 +2,23 @@
 #define TABLE_H
 
 #include <iostream>
+#include "../header/Customer.h"
 using namespace std;
 
 class Table {
     public:
         Table();
         ~Table();
-        void setCustomerName(string custName);
-        const string& getCustomerName() const;
+        void setCustomerGroup(Customer* group);
+        const Customer* getCustomerGroup();
         const int getOrders(); //delete? repetitive with takeOrder() in Server.h
         const int getSeats();
         const bool getAvailability();
         const double getBill();
 
     private:
-        string customerName;
+        //string customerName;
+        Customer* customerGroup;
         int numSeats;
         bool availableTable;
         double billAmount;    

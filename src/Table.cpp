@@ -4,22 +4,23 @@
 using namespace std;
 
 Table::Table() {
-    customerName = "";
+    //customerName = "";
     numSeats = 6;
     availableTable = true;
     billAmount = 0.0;
+    customerGroup = nullptr;
 }
 
 Table::~Table() {
     
 }
 
-void Table::setCustomerName(string custName) {
-    return;
+void Table::setCustomerGroup(Customer* group) {
+    customerGroup = group;
 }
 
-const string& Table::getCustomerName() const {
-    return customerName;
+const Customer* Table::getCustomerGroup() {
+    return customerGroup;
 }
 
 const int Table::getOrders() {

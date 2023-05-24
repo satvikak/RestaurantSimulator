@@ -10,12 +10,16 @@ using namespace std;
 class Customer {
     public:
         Customer();
+        Customer(vector<string>& names, int menuItemsNum);
         Customer(int numPeople, vector<string>& names, int menuItemsNum);
         void generateOrders(vector<OrderNode>& listOfOrders);     
         int payBill();                  // TO-DO
         double generateRating(bool good);
         const int getGroupSize();
         void setGroupSize(int value);
+        void setRandomPartySize();
+        void setRandomNames(vector<string>& names);
+        void setNumberofMenuItems(int num);
     
     private:
         int groupSize;

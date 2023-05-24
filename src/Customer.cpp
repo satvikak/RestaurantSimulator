@@ -5,7 +5,14 @@
 using namespace std;
 
 Customer::Customer() {
-    groupSize = 0;
+    
+}
+
+Customer::Customer(vector<string>& names, int menuItemsNum) {
+    setRandomPartySize();
+    setRandomNames(names);
+    numMenuItems = menuItemsNum;
+
 }
 
 Customer::Customer(int numPeople, vector<string>& names, int menuItemsNum) {
@@ -61,4 +68,20 @@ const int Customer::getGroupSize() {
 
 void Customer::setGroupSize(int value) {
     groupSize = value;
+}
+
+void Customer::setRandomPartySize() {
+    int partySize = rand() % 6 + 1;        // random int from 1 - 6
+    groupSize = partySize;
+}
+
+void Customer::setRandomNames(vector<string>& names) {
+    for (int i = 0; i < groupSize; i++) {
+        int nameIndex = rand() % names.size();       // random number from 0 to (1 - names.size())
+        customerNames.push_back(names.at(nameIndex));
+    }
+}
+
+void Customer::setNumberofMenuItems(int num) {
+    numMenuItems = num;
 }

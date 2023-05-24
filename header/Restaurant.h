@@ -26,6 +26,7 @@ class Restaurant {
     
     private:
         string restaurantName;
+        vector<string> names{"Angelica", "Ben", "Angel", "Ryan", "Sophia", "Ruby", "Carly", "Lexi", "Joshua", "Ken", "Raquel", "Beth", "Rio", "Fiona", "Richard"};
         double restaurantBalance;
         double rating;
         int numTables;
