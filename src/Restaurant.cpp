@@ -135,6 +135,8 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
     getline(cin, restaurantName);
     this->setRestaurantName(restaurantName);
     
+    //Manager* m = new Manager();
+
     while (this->getBalance() > 0 && this->getRating() > 0) {
         //manager screen
         m.printCharacterDetails();
@@ -143,7 +145,6 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         cout << "Time to create a menu for your restaurant! "; //replace with restaurantName variable
         cout << "What would you like your customers to have?" << endl << endl;
 
-        Manager* myMenu = new Manager();
 
         int _menuNumber = 0;
         string _foodType = "x";
@@ -167,15 +168,15 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             cin >> _foodPrice;
             cout << endl;
 
-            MenuNode* newMenuItem = new MenuNode(_menuNumber, _foodType, _foodItem, _foodPrice);
-            myMenu->menuAdd(newMenuItem);
+            MenuItem* newMenuItem = new MenuItem(_menuNumber, _foodType, _foodItem, _foodPrice);
+            m.menuAdd(newMenuItem);
 
             cout << "Add another item? ('y' = yes, 'n' = no): ";
             cin >> userInput;
             cout << endl << endl;
         }
 
-        myMenu->viewFullMenu(); //print full menu (can be used later by the server to display the menu)
+        m.viewFullMenu(); //print full menu (can be used later by the server to display the menu)
 
         //server screen
         s.printCharacterDetails();
@@ -252,7 +253,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         cout << this->getRestaurantName() << " Balance: $" << this->getBalance() << endl << endl;
 
         //delete anything allocated with new or any objects in the end
-        delete myMenu;
+        m.clearFullMenu();
         //delete myOrder;
         for(unsigned int row=0; row<numTables; ++row) {
             delete myTables[row];
@@ -260,5 +261,4 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         delete[] myTables;
         // //delete newMenuItem; //compiler error when trying to delete (Valgrind looks fine)
     }
-
 }

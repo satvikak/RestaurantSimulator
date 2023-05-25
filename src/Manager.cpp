@@ -4,57 +4,6 @@
 #include <iostream>
 using namespace std;
 
-//menu node class implementation
-MenuNode::MenuNode() {
-    menuNumber = 0;
-    foodType = "";
-    foodItem = "";
-    foodPrice = 0.0;
-    next = nullptr;
-}
-
-MenuNode::MenuNode(int mNumber, string fType, string fItem, double fPrice) {
-    menuNumber = mNumber;
-    foodItem = fItem;
-    foodPrice = fPrice;
-    next = nullptr;
-
-    //store foodType in node as full word, instead of just letter
-    if (fType == "a") {
-        foodType = "appetizer";
-    }
-    else if (fType == "m") {
-        foodType = "main course";
-    }
-    else if (fType == "d") {
-        foodType = "dessert";
-    }
-}
-
-int MenuNode::getMenuNumber() const {
-    return menuNumber;
-}
-
-string MenuNode::getFoodType() const {
-    return foodType;
-}
-
-string MenuNode::getFoodItem() const {
-    return foodItem;
-}
-
-double MenuNode::getFoodPrice() const {
-    return foodPrice;
-}
-
-//print a singular menu item
-void MenuNode::printMenuNode() const {
-    cout << "Menu Number: " << menuNumber << endl;
-    cout << "Food Type:   " << foodType << endl;
-    cout << "Food Item:   " << foodItem << endl;
-    cout << "Food Price:  $" << foodPrice << endl;
-}
-
 //manager class implementation
 Manager::Manager() {
     head = nullptr;
@@ -62,23 +11,11 @@ Manager::Manager() {
 }
 
 Manager::~Manager() {
-    while (!isEmpty()) {
-        if (head == tail) {
-            delete head;
-            head = nullptr;
-            tail = nullptr;
-        }
-        else {
-            MenuNode* temp = head;
-            head = head->next;
-            delete temp;
-            temp = nullptr;
-        }
-    }
+
 }
 
 //add an item to the menu
-void Manager::menuAdd(MenuNode* newNode) {
+void Manager::menuAdd(MenuItem* newNode) {
     if (isEmpty()) {
         head = newNode;
         tail = newNode;
@@ -91,7 +28,7 @@ void Manager::menuAdd(MenuNode* newNode) {
 
 //change the price of an item on the menu with the newly requested price (need to test)
 void Manager::changeMenuPrice(int itemNumber, double newPrice) {
-    MenuNode* curr = head;
+    MenuItem* curr = head;
 
     if (isEmpty()) {
         cout << "Menu is empty" << endl; //throw?
@@ -112,7 +49,7 @@ void Manager::changeMenuPrice(int itemNumber, double newPrice) {
 
 //print the full menu
 void Manager::viewFullMenu() {
-    MenuNode* curr = head;
+    MenuItem* curr = head;
 
     if (isEmpty()) {
         cout << "Menu is empty" << endl; //throw?
@@ -122,7 +59,7 @@ void Manager::viewFullMenu() {
     cout << "--RESTAURANT MENU--" << endl;
 
     while (curr!=nullptr) {
-        curr->printMenuNode();
+        curr->printMenuItem();
         cout << endl;
 
         curr = curr->next;
@@ -130,6 +67,22 @@ void Manager::viewFullMenu() {
 
     delete curr;
     curr = nullptr;
+}
+
+void Manager::clearFullMenu() {
+    while (!isEmpty()) {
+        if (head == tail) {
+            delete head;
+            head = nullptr;
+            tail = nullptr;
+        }
+        else {
+            MenuItem* temp = head;
+            head = head->next;
+            delete temp;
+            temp = nullptr;
+        }
+    }
 }
 
 //check if menu is empty

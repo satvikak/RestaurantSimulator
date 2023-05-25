@@ -1,6 +1,14 @@
 #include "gtest/gtest.h"
+#include "gmock/gmock.h"
 
-//add unit tests here
+#include "chef_tests.hpp"
+#include "customer_tests.hpp"
+#include "employee_tests.hpp"
+#include "manager_tests.hpp"
+#include "order_tests.hpp"
+#include "restaurant_tests.hpp"
+#include "server_tests.hpp"
+#include "table_tests.hpp"
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
