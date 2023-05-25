@@ -9,6 +9,7 @@
 #include "restaurant_tests.hpp"
 #include "server_tests.hpp"
 #include "table_tests.hpp"
+#include "menuItem_tests.hpp"
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
