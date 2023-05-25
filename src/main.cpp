@@ -1,4 +1,5 @@
 #include "../header/Restaurant.h"
+//#include <stdlib.h>
 
 using namespace std;
 
@@ -7,7 +8,6 @@ int main() {
     cout << "Enter 'QUIT' at any time to end the game" << endl << endl;
 
     Restaurant r = Restaurant();
-
     r.simulateRestaurant();
 
     return 0;
