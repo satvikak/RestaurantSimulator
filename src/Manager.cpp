@@ -36,12 +36,30 @@ void Manager::changeMenuPrice(int itemNumber, double newPrice) {
     }
 
     while (curr != nullptr) {
-        if (curr->menuNumber == itemNumber) {
-            curr->foodPrice = newPrice;
+        if (curr->getMenuNumber() == itemNumber) {
+            curr->setFoodPrice(newPrice);
         }
 
         curr = curr->next;
     }
+
+    delete curr;
+    curr = nullptr;
+}
+
+const int Manager::getLastMenuNumber() {
+    MenuItem* curr = head;
+
+    if (isEmpty()) {
+        cout << "Menu is empty" << endl; //throw?
+        exit(1);
+    }
+
+    while (curr->next != nullptr) {
+        curr = curr->next;
+    }
+
+    return curr->getMenuNumber();
 
     delete curr;
     curr = nullptr;
@@ -56,9 +74,9 @@ void Manager::viewFullMenu() {
         return;
     }
 
-    cout << "--RESTAURANT MENU--" << endl;
+    cout << "---RESTAURANT MENU---" << endl;
 
-    while (curr!=nullptr) {
+    while (curr != nullptr) {
         curr->printMenuItem();
         cout << endl;
 

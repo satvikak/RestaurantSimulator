@@ -31,5 +31,5 @@ void Chef::printCharacterDetails() {
     cin.ignore();
     getline(cin, name);
     Employee::setEmployeeName(name);
-    cout << endl << "You are officially Chef " << name << "!" << endl;
+    cout << endl << "You are officially Chef " << name << "! 👩🏻‍🍳" << endl;
 }
