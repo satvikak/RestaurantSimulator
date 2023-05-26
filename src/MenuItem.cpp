@@ -43,6 +43,10 @@ string MenuItem::getFoodItem() const {
     return foodItem;
 }
 
+void MenuItem::setFoodPrice(double newFoodPrice) {
+    foodPrice = newFoodPrice;
+}
+
 double MenuItem::getFoodPrice() const {
     return foodPrice;
 }

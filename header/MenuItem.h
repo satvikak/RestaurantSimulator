@@ -1,5 +1,5 @@
-#ifndef MENU_ITEM_H
-#define MENU_ITEM_H
+#ifndef MENUITEM_H
+#define MENUITEM_H
 
 #include <iostream>
 using namespace std;
@@ -7,21 +7,21 @@ using namespace std;
 class MenuItem {
     public:
         MenuItem* next;
-        int menuNumber;
-        double foodPrice;
-
         MenuItem();
         MenuItem(int mNumber, string fType, string fItem, double fPrice);
 
         int getMenuNumber() const;
         string getFoodType() const;
         string getFoodItem() const;
+        void setFoodPrice(double newFoodPrice);
         double getFoodPrice() const;
         void printMenuItem() const;
 
     private:
+        int menuNumber;
         string foodType;
         string foodItem;
+        double foodPrice;
 };
 
 #endif

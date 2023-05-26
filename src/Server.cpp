@@ -35,5 +35,5 @@ void Server::printCharacterDetails() {
     cin.ignore();
     getline(cin, name);
     Employee::setEmployeeName(name);
-    cout << endl << "You are officially Server " << name << "!" << endl;
+    cout << endl << "You are officially Server " << name << "! 👱" << endl;
 }

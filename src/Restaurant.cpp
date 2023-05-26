@@ -10,6 +10,7 @@
 #include <iostream>
 #include <iomanip>
 #include <stdlib.h>
+
 using namespace std;
 
 Restaurant::Restaurant() {
@@ -128,137 +129,201 @@ void Restaurant::createFloorPlan() {
 }
 
 void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
-    //initial restaurant setup
     srand(time(NULL));
+
+    //initial restaurant setup
     string restaurantName = "";
     cout << "Enter a name for your restaurant: ";
     getline(cin, restaurantName);
     this->setRestaurantName(restaurantName);
+    cout << endl;
     
     //Manager* m = new Manager();
+    int cycleNum = 1; //counter to keep track of number of cycles in game
 
-    while (this->getBalance() > 0 && this->getRating() > 0) {
+    while (this->getRating() >= 2 && this->getBalance() > 0) {
         //manager screen
         m.printCharacterDetails();
 
-        //create menu
-        cout << "Time to create a menu for your restaurant! "; //replace with restaurantName variable
-        cout << "What would you like your customers to have?" << endl << endl;
+            //create menu
+            if (cycleNum >= 2) {
+                char makeChange;
+                int _newFoodNum;
+                double _newFoodPrice;
 
+                cout << "Would you like to change the price of any items on your menu?" << endl;
+                cout << "Type 'y' for yes, 'n' for no: ";
+                cin >> makeChange;
+                cout << endl << endl;
 
-        int _menuNumber = 0;
-        string _foodType = "x";
-        string _foodItem = "x";
-        double _foodPrice = 0;
-        char userInput = 'y';
+                if (makeChange == 'y') {
+                    cout << "Enter the menu number of the item's price to change: ";
+                    cin >> _newFoodNum;
+                    cout << endl;
 
-        while (userInput != 'n') {  //include user input validation
-            _menuNumber++;
+                    cout << "Enter the new price of the item: $";
+                    cin >> _newFoodPrice;
+                    cout << endl << endl;
 
-            cout << "Enter food type ('a' = appetizer, 'm' = main course, 'd' = dessert): ";
-            cin >> _foodType;
-            cout << endl;
+                    m.changeMenuPrice(_newFoodNum, _newFoodPrice);
+                    cout << "Here is the updated menu!" << endl << endl;
+                }
+            }
+            else {
+                cout << "Time to create a menu for " << restaurantName << "! ";
+                cout << "What would you like your customers to have? 📝" << endl << endl;
 
-            cout << "Enter food item: ";
-            cin.ignore();
-            getline(cin, _foodItem);
-            cout << endl;
+                int _menuNumber = 0;
+                string _foodType = "x";
+                string _foodItem = "x";
+                double _foodPrice = 0.0;
+                char userInput = 'y';
 
-            cout << "Enter food price: $";
-            cin >> _foodPrice;
-            cout << endl;
+                while (userInput != 'n') {  //include user input validation
+                    _menuNumber++;
 
-            MenuItem* newMenuItem = new MenuItem(_menuNumber, _foodType, _foodItem, _foodPrice);
-            m.menuAdd(newMenuItem);
+                    cout << "Enter food type ('a' = appetizer, 'm' = main course, 'd' = dessert): ";
+                    cin >> _foodType;
+                    cout << endl;
 
-            cout << "Add another item? ('y' = yes, 'n' = no): ";
-            cin >> userInput;
-            cout << endl << endl;
-        }
+                    cout << "Enter food item: ";
+                    cin.ignore();
+                    getline(cin, _foodItem);
+                    cout << endl;
 
-        m.viewFullMenu(); //print full menu (can be used later by the server to display the menu)
+                    cout << "Enter food price: $";
+                    cin >> _foodPrice;
+                    cout << endl;
+
+                    MenuItem* newMenuItem = new MenuItem(_menuNumber, _foodType, _foodItem, _foodPrice);
+                    m.menuAdd(newMenuItem);
+
+                    cout << "Add another item? ('y' = yes, 'n' = no): ";
+                    cin >> userInput;
+                    cout << endl << endl;
+                }
+            }
+
+            m.viewFullMenu(); //print full menu for each cycle
 
         //server screen
         s.printCharacterDetails();
 
-        //display floorplan
-        cout<<"Here is the floorplan for your restaurant: "<<endl;
-        this->createFloorPlan();
+            //display floorplan
+            cout<<"Here is the floorplan for your restaurant: "<<endl << endl;
+            this->createFloorPlan();
 
-        //seat a customer
-        Customer* newCustomers = new Customer(names, _menuNumber);
-        int groupSize = newCustomers->getGroupSize();
-        cout << endl;
-        cout << "Your first task is to seat new customers." << endl;
-        cout << "Looks like there's a group of " << groupSize;
-        if (groupSize < 2) {
-            cout << " person ";
-        } else {
-            cout << " people ";
-        }
-        cout << "waiting to be seated!" << endl;
-        cout << endl;
+            //seat a customer
+            int totalMenuItems = m.getLastMenuNumber();
 
-
-        int chosenTableNumber = -1;
-        char input = 'y';
-        do {
-            cout<<"Enter a number corresponding to an open table: ";
-            cin>>chosenTableNumber;
+            Customer* newCustomers = new Customer(names, totalMenuItems);
+            int groupSize = newCustomers->getGroupSize();
             cout << endl;
-            cout<<"Open seats at Table #"<<chosenTableNumber<<": "<<myTables[chosenTableNumber-1]->getSeats()<<endl;
-            if (!myTables[chosenTableNumber-1]->getAvailability()) {
-                cout << "This table is occupied. Choose another." << endl; 
+
+            cout << "Your first task is to seat new customers. 🪑" << endl;
+            cout << "Looks like there's a group of " << groupSize;
+            if (groupSize < 2) {
+                cout << " person ";
             } else {
-                cout << "This table is free! Would you like to seat the customers here? ('y' = yes, 'n' = no): ";
-                cin >> input;
+                cout << " people ";
             }
-        } while (!myTables[chosenTableNumber-1]->getAvailability() || input == 'n');
-        Table* chosenTable = myTables[chosenTableNumber-1];
-        chosenTable->setCustomerGroup(newCustomers);
+            cout << "waiting to be seated!" << endl << endl;
 
-        // Take customer order
-        cout << endl;
-        cout << "Great! They love their seats. Your next job is to take their order." << endl;
-        cout << "Type 'y' when you are ready: ";
-        char enter;
-        cin >> enter;
 
-        // view orders
-        cout << "You asked them for their order, This is what they want: " << endl;
-        cout << endl;
-        Order customerOrders;
-        newCustomers->generateOrders(customerOrders.getOrdersList());
-        customerOrders.printOrders();
+            int chosenTableNumber = -1;
+            char input = 'y';
+            do {
+                cout<<"Enter a number corresponding to an open table: ";
+                cin>>chosenTableNumber;
+                cout << endl;
+                cout<<"Open seats at Table #"<<chosenTableNumber<<": "<<myTables[chosenTableNumber-1]->getSeats()<<endl;
+                if (!myTables[chosenTableNumber-1]->getAvailability()) {
+                    cout << "This table is occupied. Choose another." << endl; 
+                } else {
+                    cout << "This table is free! Would you like to seat the group here? ('y' = yes, 'n' = no): ";
+                    cin >> input;
+                }
+            } while (!myTables[chosenTableNumber-1]->getAvailability() || input == 'n');
 
-        cout << endl;
-        cout << "Wonderful! Now that you have the orders, it's time for the chef to make the items..." << endl;
+            Table* chosenTable = myTables[chosenTableNumber-1];
+            chosenTable->setCustomerGroup(newCustomers);
+
+            // Take customer order
+            cout << endl;
+            cout << "Great! They love their seats. Your next job is to take their order." << endl;
+            cout << "Type 'y' when you are ready: ";
+            char enter;
+            cin >> enter;
+            cout << endl;
+
+            // view orders
+            cout << "You asked them for their order, this is what they want: " << endl << endl;
+            Order customerOrders;
+            newCustomers->generateOrders(customerOrders.getOrdersList());
+            customerOrders.printOrders();
+
+            cout << endl;
+            cout << "Wonderful! Now that you have the orders, it's time for the chef to make the items... 🍲" << endl;
 
 
         //chef screen
         c.printCharacterDetails();
 
-        //make customers' orders
+            //make customers' orders
+            cout << endl;
 
 
-        //remove orders from pending orders list
+            //remove orders from pending orders list
 
         //server screen
-        cout << "You are now Server " << s.Employee::getEmployeeName() << "!" << endl;
+        cout << "You are now Server " << s.Employee::getEmployeeName() << "! 👱" << endl;
 
-        //serve customers their food in correct order
+            //serve customers their food in correct order
+            
 
-        //evaluate results (check balance, rating, etc) and go back to start if results pass
-        cout << this->getRestaurantName() << " Review: " << this->getRating() << "/5 Stars." << endl;
-        cout << this->getRestaurantName() << " Balance: $" << this->getBalance() << endl << endl;
+            //evaluate results (check balance, rating, etc) and go back to start if results pass
+            cout << this->getRestaurantName() << " Review: " << this->getRating() << "/5 Stars ⭐" << endl;
+            cout << this->getRestaurantName() << " Balance: $" << this->getBalance() << " 💵" << endl << endl;
 
-        //delete anything allocated with new or any objects in the end
-        m.clearFullMenu();
-        //delete myOrder;
-        for(unsigned int row=0; row<numTables; ++row) {
-            delete myTables[row];
+        //delete anything allocated with new
+            //delete newMenuItem; //compiler error when trying to delete (Valgrind looks fine)
+        
+        //display message based on whether results pass or fail
+        if (this->getRating() >= 2 && this->getBalance() > 0) {
+                char userChoice;
+                cycleNum++;
+
+                cout << "Congratulations! Your first day at your new restaurant was a success!" << endl;
+                cout << "Would you like to continue or quit? ('c' = continue, 'q' = quit): ";
+                cin >> userChoice;
+                cout << endl << endl;
+
+                if (userChoice == 'q') {
+                    cout << "Hope you had fun role-playing in a restaurant! Until next time!" << endl << endl;
+                    m.clearFullMenu();
+
+                    for(unsigned int row=0; row<numTables; ++row) {
+                        delete myTables[row];
+                    }
+                    delete[] myTables;
+
+                    return; //end game
+                }
+                else if (userChoice == 'c') {
+                    cout << "Time for round " << cycleNum << "!" << endl << endl;
+                }
         }
-        delete[] myTables;
-        // //delete newMenuItem; //compiler error when trying to delete (Valgrind looks fine)
+        else {
+            cout << "Oh no! Seems like your restaurant didn't do too well :(" << endl;
+            cout << "Thanks for playing, better luck next time!" << endl << endl;
+            m.clearFullMenu();
+
+            for(unsigned int row=0; row<numTables; ++row) {
+                delete myTables[row];
+            }
+            delete[] myTables;
+
+            return; //end game
+        }
     }
 }
