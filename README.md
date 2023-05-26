@@ -47,9 +47,10 @@
 > ![Navigation Diagram drawio](https://user-images.githubusercontent.com/129975596/236902494-14ac1d05-3dbe-4d88-be37-40cb19697e6f.png)
 
 ### Screen Layouts
-> <img width="517" alt="Screenshot 2023-05-19 at 9 57 17 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/cdbc95c4-e9b8-4dd3-874f-2cc82279b2c4">
-> <img width="517" alt="Screenshot 2023-05-19 at 9 57 44 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/4e242997-782a-4c04-a461-77a4e03719b8">
-> <img width="517" alt="Screenshot 2023-05-19 at 9 58 09 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/cb5c9d1b-3df8-4a1b-ac36-4c70dd18b2c5">
+> <img width="518" alt="Screenshot 2023-05-26 at 9 35 21 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/06626895-c7ec-4adb-aea3-6b522b9331fe">
+> <img width="518" alt="Screenshot 2023-05-26 at 9 35 41 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/a1f0d2b8-7324-45bd-a6a8-9d3a0695e092">
+> <img width="518" alt="Screenshot 2023-05-26 at 9 35 57 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/01ebd06d-7477-42e3-a5f0-6c2113017515">
+> <img width="518" alt="Screenshot 2023-05-26 at 9 36 10 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/2002a431-66f0-4606-8f91-3b8fb92c9c7d">
 
 ## Class Diagram
 > ![Restaurant Class UML Diagram](https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/129975596/c8a664e4-e502-4547-9621-2d38fea9f4c3)
