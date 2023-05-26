@@ -7,6 +7,7 @@
 #include "manager_tests.hpp"
 #include "order_tests.hpp"
 #include "restaurant_tests.hpp"
+#include "../header/Restaurant.h"
 #include "server_tests.hpp"
 #include "table_tests.hpp"
 #include "../header/Table.h"
