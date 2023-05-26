@@ -13,6 +13,7 @@ class Table {
         const Customer* getCustomerGroup();
         const int getOrders(); //delete? repetitive with takeOrder() in Server.h
         const int getSeats();
+        void adjustLeftoverSeats(int availableSeats);
         const bool getAvailability();
         const double getBill();
 

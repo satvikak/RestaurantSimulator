@@ -31,7 +31,17 @@ const int Table::getSeats() {
     return numSeats;
 }
 
+void Table::adjustLeftoverSeats(int availableSeats) {
+    numSeats = numSeats-availableSeats;
+}
+
 const bool Table::getAvailability() {
+    if(this->getSeats()<6) {
+        availableTable = false;
+    }
+    else {
+        availableTable = true;
+    }
     return availableTable;
 }
 
