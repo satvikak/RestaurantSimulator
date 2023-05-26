@@ -63,8 +63,8 @@ TEST(RestaurantTests, simulateRestaurant) {
 
     InSequence seq;
     EXPECT_CALL(rest, setRestaurantName(restaurantName));
-    EXPECT_CALL(rest, getBalance());
     EXPECT_CALL(rest, getRating());
+    EXPECT_CALL(rest, getBalance());
     EXPECT_CALL(rest, createFloorPlan());
     EXPECT_CALL(rest, getRestaurantName());
     EXPECT_CALL(rest, getRating());
