@@ -47,7 +47,7 @@ void Manager::changeMenuPrice(int itemNumber, double newPrice) {
     curr = nullptr;
 }
 
-const int Manager::getLastMenuNumber() {
+int Manager::getLastMenuNumber() {
     MenuItem* curr = head;
 
     if (isEmpty()) {
@@ -114,5 +114,5 @@ void Manager::printCharacterDetails() {
     cout << "Enter your manager name: ";
     getline(cin, name);
     Employee::setEmployeeName(name);
-    cout << endl << "You are officially Manager " << name << "!" << endl;
+    cout << endl << "You are officially Manager " << name << "! 🎉" << endl;
 }

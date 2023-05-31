@@ -10,6 +10,7 @@
 #include <iostream>
 #include <iomanip>
 #include <stdlib.h>
+#include <string>
 
 using namespace std;
 
@@ -143,26 +144,42 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
     while (this->getRating() >= 2 && this->getBalance() > 0) {
         //manager screen
-        m.printCharacterDetails();
+        if (cycleNum == 1) {
+            m.printCharacterDetails();
+        }
+        else {
+            cout << "You are now Manager " << m.Employee::getEmployeeName() << "! 🎉" << endl;
+        }
 
             //create menu
             if (cycleNum >= 2) {
-                char makeChange;
+                string makeChange;
                 int _newFoodNum;
                 double _newFoodPrice;
 
-                cout << "Would you like to change the price of any items on your menu?" << endl;
+                cout << endl << "Would you like to change the price of any items on your menu? 💲" << endl;
                 cout << "Type 'y' for yes, 'n' for no: ";
                 cin >> makeChange;
-                cout << endl << endl;
+                makeChange = validateStringInput(makeChange, 2);
+                cout << endl;
 
-                if (makeChange == 'y') {
-                    cout << "Enter the menu number of the item's price to change: ";
+                if (makeChange == "y") {
+                    int lastNum = 0;
+
+                    cout << "Enter the menu number (1 - ";
+                    lastNum = m.getLastMenuNumber();
+                    cout << lastNum << ") of the item's price to change: ";
                     cin >> _newFoodNum;
+
+                    while (_newFoodNum > m.getLastMenuNumber() || _newFoodNum <= 0) {
+                        cout << endl << "Uh-oh, that's not a valid menu number! Try again: ";
+                        cin >> _newFoodNum;
+                    }
                     cout << endl;
 
                     cout << "Enter the new price of the item: $";
                     cin >> _newFoodPrice;
+                    _newFoodPrice = validateDoubleInput(_newFoodPrice, 1);
                     cout << endl << endl;
 
                     m.changeMenuPrice(_newFoodNum, _newFoodPrice);
@@ -177,13 +194,14 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 string _foodType = "x";
                 string _foodItem = "x";
                 double _foodPrice = 0.0;
-                char userInput = 'y';
+                string userInput = "y";
 
-                while (userInput != 'n') {  //include user input validation
+                while (userInput != "n") {  //include user input validation
                     _menuNumber++;
 
                     cout << "Enter food type ('a' = appetizer, 'm' = main course, 'd' = dessert): ";
                     cin >> _foodType;
+                    _foodType = validateStringInput(_foodType, 1);
                     cout << endl;
 
                     cout << "Enter food item: ";
@@ -193,6 +211,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
                     cout << "Enter food price: $";
                     cin >> _foodPrice;
+                    _foodPrice = validateDoubleInput(_foodPrice, 1);
                     cout << endl;
 
                     MenuItem* newMenuItem = new MenuItem(_menuNumber, _foodType, _foodItem, _foodPrice);
@@ -200,6 +219,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
                     cout << "Add another item? ('y' = yes, 'n' = no): ";
                     cin >> userInput;
+                    userInput = validateStringInput(userInput, 2);
                     cout << endl << endl;
                 }
             }
@@ -207,7 +227,12 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             m.viewFullMenu(); //print full menu for each cycle
 
         //server screen
-        s.printCharacterDetails();
+        if (cycleNum == 1) {
+            s.printCharacterDetails();
+        }
+        else {
+            cout << "You are now Server " << s.Employee::getEmployeeName() << "! 👱" << endl;
+        }
 
             //display floorplan
             cout<<"Here is the floorplan for your restaurant: "<<endl << endl;
@@ -231,10 +256,11 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
 
             int chosenTableNumber = -1;
-            char input = 'y';
+            string input = "y";
             do {
                 cout<<"Enter a number corresponding to an open table: ";
                 cin>>chosenTableNumber;
+                chosenTableNumber = validateIntInput(chosenTableNumber, 1);
                 cout << endl;
                 cout<<"Open seats at Table #"<<chosenTableNumber<<": "<<myTables[chosenTableNumber-1]->getSeats()<<endl;
                 if (!myTables[chosenTableNumber-1]->getAvailability()) {
@@ -242,18 +268,20 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 } else {
                     cout << "This table is free! Would you like to seat the group here? ('y' = yes, 'n' = no): ";
                     cin >> input;
+                    input = validateStringInput(input, 2);
                 }
-            } while (!myTables[chosenTableNumber-1]->getAvailability() || input == 'n');
+            } while (!myTables[chosenTableNumber-1]->getAvailability() || input == "n");
 
             Table* chosenTable = myTables[chosenTableNumber-1];
             chosenTable->setCustomerGroup(newCustomers);
 
             // Take customer order
             cout << endl;
-            cout << "Great! They love their seats. Your next job is to take their order." << endl;
+            cout << "Great! They love their seats. Your next job is to take their order. 📝" << endl;
             cout << "Type 'y' when you are ready: ";
-            char enter;
+            string enter;
             cin >> enter;
+            enter = validateStringInput(enter, 3);
             cout << endl;
 
             // view orders
@@ -267,7 +295,12 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
 
         //chef screen
-        c.printCharacterDetails();
+        if (cycleNum == 1) {
+            c.printCharacterDetails();
+        }
+        else {
+            cout << "You are now Chef " << c.Employee::getEmployeeName() << "! 🍴" << endl;
+        }
 
             //make customers' orders
             cout << endl;
@@ -290,16 +323,17 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         
         //display message based on whether results pass or fail
         if (this->getRating() >= 2 && this->getBalance() > 0) {
-                char userChoice;
+                string userChoice;
                 cycleNum++;
 
-                cout << "Congratulations! Your first day at your new restaurant was a success!" << endl;
+                cout << "Congratulations! Your first day at your new restaurant was a success! 👏" << endl;
                 cout << "Would you like to continue or quit? ('c' = continue, 'q' = quit): ";
                 cin >> userChoice;
-                cout << endl << endl;
+                userChoice = validateStringInput(userChoice, 4);
+                cout << endl;
 
-                if (userChoice == 'q') {
-                    cout << "Hope you had fun role-playing in a restaurant! Until next time!" << endl << endl;
+                if (userChoice == "q") {
+                    cout << "Hope you had fun role-playing in a restaurant! Until next time! 👋" << endl << endl;
                     m.clearFullMenu();
 
                     for(unsigned int row=0; row<numTables; ++row) {
@@ -309,13 +343,13 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
                     return; //end game
                 }
-                else if (userChoice == 'c') {
-                    cout << "Time for round " << cycleNum << "!" << endl << endl;
+                else if (userChoice == "c") {
+                    cout << "TIME FOR ROUND " << cycleNum << "! GOOD LUCK! 🍀" << endl << endl;
                 }
         }
         else {
-            cout << "Oh no! Seems like your restaurant didn't do too well :(" << endl;
-            cout << "Thanks for playing, better luck next time!" << endl << endl;
+            cout << "Oh no! Seems like your restaurant didn't do too well. 🙁" << endl;
+            cout << "Thanks for playing, better luck next time! 👋" << endl << endl;
             m.clearFullMenu();
 
             for(unsigned int row=0; row<numTables; ++row) {
@@ -326,4 +360,61 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             return; //end game
         }
     }
+}
+
+string Restaurant::validateStringInput(string userInput, int num) {
+    string newInput = userInput;
+
+    if (num == 1) {
+        while (newInput != "a" && newInput != "m" && newInput != "d") {
+            cout << endl << "Invalid food type, try again: ";
+            cin >> newInput;
+        }
+    }
+    else if (num == 2) {
+        while (newInput != "n" && newInput != "y") {
+            cout << endl << "Invalid input, try again: ";
+            cin >> newInput;
+        }
+    }
+    else if (num == 3) {
+        while (newInput != "y") {
+            cout << endl << "Invalid input, try again: ";
+            cin >> newInput;
+        }
+    }
+    else if (num == 4) {
+        while (newInput != "c" && newInput != "q") {
+            cout << endl << "Invalid input, try again: ";
+            cin >> newInput;
+        }
+    }
+
+    return newInput;
+}
+
+int Restaurant::validateIntInput(int userInput, int num) {
+    int newInput = userInput;
+
+    if (num == 1) {
+        while (newInput <= 0 || newInput > 15) {
+            cout << endl << "Invalid table number, try again: ";
+            cin >> newInput;
+        }
+    }
+
+    return newInput;
+}
+
+double Restaurant::validateDoubleInput(double userInput, int num) {
+    double newInput = userInput;
+
+    if (num == 1) {
+        while (newInput <= 0.0 || newInput > 1000.0) {
+            cout << endl << "Invalid price, try again: $";
+            cin >> newInput;
+        }
+    }
+
+    return newInput;
 }
