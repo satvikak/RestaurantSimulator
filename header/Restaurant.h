@@ -23,6 +23,10 @@ class Restaurant {
         void createFloorPlan();
         void simulateRestaurant();
         const double getRating();
+
+        string validateStringInput(string userInput, int num);
+        int validateIntInput(int userInput, int num);
+        double validateDoubleInput(double userInput, int num);
     
     private:
         string restaurantName;
