@@ -12,6 +12,8 @@ struct OrderNode {
     const void printOrder() {
         cout << customerName << " ordered menu item " << itemNumber << "." << endl;
     }
+
+    
 };
 
 #endif

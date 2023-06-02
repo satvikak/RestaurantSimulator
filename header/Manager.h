@@ -18,6 +18,7 @@ class Manager : public Employee {
         void clearFullMenu();
         bool isEmpty();
         void printCharacterDetails();
+        double getPriceOfChosenMenuItem(int menuNumber);
     
     private:
         MenuItem* head;

@@ -150,7 +150,6 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         else {
             cout << "You are now Manager " << m.Employee::getEmployeeName() << "! 🎉" << endl;
         }
-
             //create menu
             if (cycleNum >= 2) {
                 string makeChange;
@@ -293,6 +292,16 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             cout << endl;
             cout << "Wonderful! Now that you have the orders, it's time for the chef to make the items... 🍲" << endl;
 
+        //create bill
+        int billTotalAmount = 0;
+        int currentMenuItem = 0;
+        int numberOfMenuItems = m.getLastMenuNumber();
+        for (int i = 0; i < groupSize; i++) {
+            currentMenuItem = customerOrders.getOrdersList().at(i).itemNumber;
+            billTotalAmount += m.getPriceOfChosenMenuItem(currentMenuItem);
+        }
+        chosenTable->setBillAmount(billTotalAmount);
+
 
         //chef screen
         if (cycleNum == 1) {
@@ -310,8 +319,19 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
         //server screen
         cout << "You are now Server " << s.Employee::getEmployeeName() << "! 👱" << endl;
+        cout << "Now that the food is prepared, it is time to serve your table..." << endl;
+        cout << "Do you remember what menu item each person ordered?" << endl;
+        cout << endl;
 
             //serve customers their food in correct order
+            int enteredMenuItem = 0;
+            cout  << "Serve the customers by entering what menu item they ordered: " << endl;
+
+        
+        //pay bill
+        cout << "Looks like the party just finished their meal and paid the bill..." << endl;
+        cout << "Congrats! You made $" << billTotalAmount << " dollars for your restaurant." << endl;
+        this->setBalance(this->getBalance() + billTotalAmount);
             
 
             //evaluate results (check balance, rating, etc) and go back to start if results pass

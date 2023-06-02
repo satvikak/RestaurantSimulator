@@ -15,7 +15,7 @@ class Order {
         void viewAllOrders();
         vector<OrderNode>& getOrdersList();
         void printOrders();
-
+    
     private:
         vector<OrderNode> ordersList;
         int numMenuItems;
