@@ -13,7 +13,6 @@ class Customer {
         Customer(vector<string>& names, int menuItemsNum);
         Customer(int numPeople, vector<string>& names, int menuItemsNum);
         void generateOrders(vector<OrderNode>& listOfOrders);     
-        int payBill();                  // TO-DO
         double generateRating(bool good);
         const int getGroupSize();
         void setGroupSize(int value);

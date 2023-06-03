@@ -41,11 +41,6 @@ void Customer::generateOrders(vector<OrderNode>& listOfOrders) {
     }
 }
 
-//TO-DO
-int Customer::payBill() {
-    return 0;
-}
-
 /* 
 Generate a rating for the restaurant
 Good = false -> rating is between 1.0 - 3.0

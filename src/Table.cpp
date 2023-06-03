@@ -48,3 +48,7 @@ const bool Table::getAvailability() {
 const double Table::getBill() {
     return billAmount;
 }
+
+void Table::setBillAmount(int value) {
+    billAmount = value;
+}

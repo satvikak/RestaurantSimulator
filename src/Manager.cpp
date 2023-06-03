@@ -58,9 +58,8 @@ int Manager::getLastMenuNumber() {
     while (curr->next != nullptr) {
         curr = curr->next;
     }
-
+    
     return curr->getMenuNumber();
-
     delete curr;
     curr = nullptr;
 }
@@ -115,4 +114,24 @@ void Manager::printCharacterDetails() {
     getline(cin, name);
     Employee::setEmployeeName(name);
     cout << endl << "You are officially Manager " << name << "! 🎉" << endl;
+}
+
+//returns the price of a specific menu item (0 if the number is larger)
+double Manager::getPriceOfChosenMenuItem(int menuNumber) {
+    double price = 0;
+    if (head == nullptr) {
+        return price;
+    }
+    if (menuNumber < 1 || menuNumber > getLastMenuNumber()) {
+        return price;
+    }
+    MenuItem* currNode = head;
+    for (int i = 0; i < menuNumber - 1; i++) {
+        currNode = currNode->next;
+    }
+    price = currNode->getFoodPrice();
+    return price;
+
+    delete currNode;
+    currNode = nullptr;
 }

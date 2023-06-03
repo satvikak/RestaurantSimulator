@@ -16,6 +16,7 @@ class Table {
         void adjustLeftoverSeats(int availableSeats);
         const bool getAvailability();
         const double getBill();
+        void setBillAmount(int value);
 
     private:
         //string customerName;
