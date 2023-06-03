@@ -9,10 +9,8 @@ using namespace std;
 class Chef : public Employee {
     public:
         Chef();
-        ~Chef();
-        string viewOrdersList();
-        bool makeOrder();
-        void removeOrder();
+        void MCGame(string type);
+        void typingGame(string type);
         void printCharacterDetails();
     
     private:

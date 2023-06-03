@@ -47,6 +47,15 @@ void Manager::changeMenuPrice(int itemNumber, double newPrice) {
     curr = nullptr;
 }
 
+//get specific item's food type
+string Manager::getItemType(int itemNumber) {
+    MenuItem* curr = head;
+    for (int i = 1; i < itemNumber; i++) {
+        curr = curr->next;
+    }
+    return curr->getFoodType();
+}
+
 int Manager::getLastMenuNumber() {
     MenuItem* curr = head;
 

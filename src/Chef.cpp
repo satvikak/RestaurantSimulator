@@ -9,20 +9,32 @@ Chef::Chef() {
 
 }
 
-Chef::~Chef() {
-    
+void Chef::MCGame(string type) {
+    cout << "Here are the tasks you need to complete. Type them out in the correct order." << endl;
+    if (type == "appetizer") {
+
+    }
+    else if (type == "main course") {
+
+    }
+    else if (type == "dessert") {
+
+    }
+    else if (type == "clean") {
+        
+    }
 }
 
-string Chef::viewOrdersList() {
-return " ";
-}
+void Chef::typingGame(string type) {
+    if (type == "appetizer") {
 
-bool Chef::makeOrder() {
-return 0.0;
-}
+    }
+    else if (type == "main course") {
 
-void Chef::removeOrder() {
+    }
+    else if (type == "dessert") {
 
+    }
 }
 
 void Chef::printCharacterDetails() {

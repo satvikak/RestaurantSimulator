@@ -13,6 +13,7 @@ class Manager : public Employee {
         ~Manager();
         void menuAdd(MenuItem* newNode);
         void changeMenuPrice(int itemNumber, double newPrice);
+        string getItemType(int itemNumber);
         int getLastMenuNumber();
         void viewFullMenu();
         void clearFullMenu();
