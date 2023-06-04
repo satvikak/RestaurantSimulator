@@ -299,7 +299,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             c.printCharacterDetails();
         }
         else {
-            cout << "You are now Chef " << c.Employee::getEmployeeName() << "! 🍴" << endl;
+            cout << "You are now Chef " << c.Employee::getEmployeeName() << "! 🍴" << endl << endl;
         }
 
             // Print orders with food type
@@ -309,16 +309,40 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 string itemType = m.getItemType(itemNumber);
                 cout << "Item #" << itemNumber << " is a " << itemType << endl;
             }
+            cout << endl;
 
             // Ask Multiple Choice question and play typing game
+            /* IN PROGRESS
+            int typeFlag = 1;
             for (int i = 0; i < groupSize; i++) {
                 string itemType = m.getItemType(customerOrders.getOrdersList().at(i).itemNumber);
-                c.MCGame(itemType);
-                c.typingGame(itemType);
+                if (typeFlag == 1 && itemType == "appetizer") {
+                    c.MCGame(itemType);
+                    c.typingGame(itemType);
+                    if (i == groupSize - 1) {
+                        typeFlag++;
+                    }
+                }
+                else if (typeFlag == 2 && itemType == "main course") {
+                    c.MCGame(itemType);
+                    c.typingGame(itemType);
+                    if (i == groupSize - 1) {
+                        typeFlag++;
+                    }
+                }
+                else if (typeFlag == 3 && itemType == "dessert") {
+                    c.MCGame(itemType);
+                    c.typingGame(itemType);
+                }
+                if (typeFlag != 3 && i == groupSize - 1) {
+                    i = -1;
+                    typeFlag++;
+                }
             }
+            */
 
             // Play typing game for clean-up
-            cout << "You're almost done!";
+            cout << "You're almost done! ";
             c.MCGame("clean");
 
         //server screen
