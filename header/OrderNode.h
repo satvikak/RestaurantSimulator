@@ -2,7 +2,8 @@
 #define ORDERNODE_H
 
 #include <iostream>
-#include<vector>
+#include <vector>
+
 using namespace std;
 
 struct OrderNode {
@@ -12,7 +13,6 @@ struct OrderNode {
     const void printOrder() {
         cout << customerName << " ordered menu item " << itemNumber << "." << endl;
     }
-
     
 };
 
