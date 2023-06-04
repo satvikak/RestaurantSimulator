@@ -1,6 +1,7 @@
 #include "../header/Table.h"
 
 #include <iostream>
+
 using namespace std;
 
 Table::Table() {

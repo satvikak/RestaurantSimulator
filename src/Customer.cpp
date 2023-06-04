@@ -1,7 +1,8 @@
 #include "../header/Customer.h"
 
 #include <iostream>
-#include <cstdlib>      
+#include <cstdlib>
+
 using namespace std;
 
 Customer::Customer() {

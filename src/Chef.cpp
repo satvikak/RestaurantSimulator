@@ -6,7 +6,11 @@
 using namespace std;
 
 Chef::Chef() {
+    numMistakes = 0;
+}
 
+int Chef::getMistakes() {
+    return numMistakes;
 }
 
 void Chef::MCGame(string type) {
@@ -63,7 +67,8 @@ void Chef::MCGame(string type) {
             break;
         }
         else if (numTries == 2) {
-            cout << "That's Incorrect. Balance Decreased. ❌" << endl; // Multiply restaurant balance by 0.9
+            cout << "That's Incorrect. Balance and Rating Decreased. ❌" << endl;
+            numMistakes++;
             break;
         }
         else if (numTries == 1) {
@@ -87,7 +92,8 @@ void Chef::typingGame(string type) {
             cout << "Chopping...🔪" << endl;
         }
         else {
-            cout << "That's Incorrect. Balance Decreased. ❌" << endl; //add functionality to decrease balance
+            cout << "That's Incorrect. Balance and Rating Decreased. ❌" << endl;
+            numMistakes++;
         }
         
         cout << "Enter 'Cook' to cook the appetizer: ";
@@ -98,7 +104,8 @@ void Chef::typingGame(string type) {
             cout << "Cooking..." << endl << endl;
         }
         else {
-            cout << "That's Incorrect. Balance Decreased. ❌" << endl; //add functionality to decrease balance
+            cout << "That's Incorrect. Balance and Rating Decreased. ❌" << endl;
+            numMistakes++;
         }
     }
     else if (type == "main course") {
@@ -112,7 +119,8 @@ void Chef::typingGame(string type) {
             cout << "Mixing...🥣" << endl;
         }
         else {
-            cout << "That's Incorrect. Balance Decreased. ❌" << endl; //add functionality to decrease balance
+            cout << "That's Incorrect. Balance and Rating Decreased. ❌" << endl;
+            numMistakes++;
         }
         
         cout << "Enter 'Sizzle' to cook the main course: ";
@@ -123,7 +131,8 @@ void Chef::typingGame(string type) {
             cout << "Sizzling...🔥" << endl << endl;
         }
         else {
-            cout << "That's Incorrect. Balance Decreased. ❌" << endl; //add functionality to decrease balance
+            cout << "That's Incorrect. Balance and Rating Decreased. ❌" << endl;
+            numMistakes++;
         }
 
     }
@@ -138,7 +147,8 @@ void Chef::typingGame(string type) {
             cout << "Baking..." << endl;
         }
         else {
-            cout << "That's Incorrect. Balance Decreased. ❌" << endl; //add functionality to decrease balance
+            cout << "That's Incorrect. Balance and Rating Decreased. ❌" << endl;
+            numMistakes++;
         }
         
         cout << "Enter 'Decorate' to decorate the dessert: ";
@@ -149,7 +159,8 @@ void Chef::typingGame(string type) {
             cout << "Decorating..." << endl << endl;
         }
         else {
-            cout << "That's Incorrect. Balance Decreased. ❌" << endl; //add functionality to decrease balance
+            cout << "That's Incorrect. Balance and Rating Decreased. ❌" << endl;
+            numMistakes++;
         }
     }
 }

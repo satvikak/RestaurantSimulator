@@ -2,9 +2,8 @@
 #define TABLE_TESTS_HPP
 
 #include "gtest/gtest.h"
-#include "../header/Table.h"
 
-//#include "../header/Table.h"
+#include "../header/Table.h"
 
 TEST(TableConstructorTests, noParameters) {
     Table* myTable = new Table();

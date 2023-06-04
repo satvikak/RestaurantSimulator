@@ -3,8 +3,10 @@
 
 #include "../header/Order.h"
 #include "../header/OrderNode.h"
+
 #include <iostream>
-#include<vector>
+#include <vector>
+
 using namespace std;
 
 class Customer {

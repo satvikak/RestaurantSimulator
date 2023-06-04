@@ -1,8 +1,10 @@
 #ifndef TABLE_H
 #define TABLE_H
 
-#include <iostream>
 #include "../header/Customer.h"
+
+#include <iostream>
+
 using namespace std;
 
 class Table {

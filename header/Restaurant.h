@@ -1,13 +1,13 @@
 #ifndef RESTAURANT_H
 #define RESTAURANT_H
 
-#include <iostream>
-#include <vector>
-
 #include "../header/Table.h"
 #include "../header/Manager.h"
 #include "../header/Server.h"
 #include "../header/Chef.h"
+
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
