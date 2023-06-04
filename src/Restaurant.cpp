@@ -308,14 +308,51 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             c.printCharacterDetails();
         }
         else {
-            cout << "You are now Chef " << c.Employee::getEmployeeName() << "! 🍴" << endl;
+            cout << "You are now Chef " << c.Employee::getEmployeeName() << "! 🍴" << endl << endl;
         }
 
-            //make customers' orders
+            // Print orders with food type
+            cout << "Here are the orders you need to prepare:" << endl;
+            for (int i = 0; i < groupSize; i++) {
+                int itemNumber = customerOrders.getOrdersList().at(i).itemNumber;
+                string itemType = m.getItemType(itemNumber);
+                cout << "Item #" << itemNumber << " is a " << itemType << endl;
+            }
             cout << endl;
 
+            // Ask Multiple Choice question and play typing game
+            /* IN PROGRESS
+            int typeFlag = 1;
+            for (int i = 0; i < groupSize; i++) {
+                string itemType = m.getItemType(customerOrders.getOrdersList().at(i).itemNumber);
+                if (typeFlag == 1 && itemType == "appetizer") {
+                    c.MCGame(itemType);
+                    c.typingGame(itemType);
+                    if (i == groupSize - 1) {
+                        typeFlag++;
+                    }
+                }
+                else if (typeFlag == 2 && itemType == "main course") {
+                    c.MCGame(itemType);
+                    c.typingGame(itemType);
+                    if (i == groupSize - 1) {
+                        typeFlag++;
+                    }
+                }
+                else if (typeFlag == 3 && itemType == "dessert") {
+                    c.MCGame(itemType);
+                    c.typingGame(itemType);
+                }
+                if (typeFlag != 3 && i == groupSize - 1) {
+                    i = -1;
+                    typeFlag++;
+                }
+            }
+            */
 
-            //remove orders from pending orders list
+            // Play typing game for clean-up
+            cout << "You're almost done! ";
+            c.MCGame("clean");
 
         //server screen
         cout << "You are now Server " << s.Employee::getEmployeeName() << "! 👱" << endl;
