@@ -146,9 +146,10 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         //manager screen
         if (cycleNum == 1) {
             m.printCharacterDetails();
+            cout << endl;
         }
         else {
-            cout << "You are now Manager " << m.Employee::getEmployeeName() << "! 🎉" << endl;
+            cout << "You are now Manager " << m.Employee::getEmployeeName() << "! 🎉" << endl << endl;
         }
             //create menu
             if (cycleNum >= 2) {
@@ -228,9 +229,10 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         //server screen
         if (cycleNum == 1) {
             s.printCharacterDetails();
+            cout << endl;
         }
         else {
-            cout << "You are now Server " << s.Employee::getEmployeeName() << "! 👱" << endl;
+            cout << "You are now Server " << s.Employee::getEmployeeName() << "! 👱" << endl << endl;
         }
 
             //display floorplan
@@ -306,6 +308,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         //chef screen
         if (cycleNum == 1) {
             c.printCharacterDetails();
+            cout << endl;
         }
         else {
             cout << "You are now Chef " << c.Employee::getEmployeeName() << "! 🍴" << endl << endl;
@@ -320,45 +323,43 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             }
             cout << endl;
 
-            // Ask Multiple Choice question and play typing game
-            /* IN PROGRESS
-            int typeFlag = 1;
+            //prompt mc and typing game in order of appetizer, main course, and dessert
             for (int i = 0; i < groupSize; i++) {
                 string itemType = m.getItemType(customerOrders.getOrdersList().at(i).itemNumber);
-                if (typeFlag == 1 && itemType == "appetizer") {
+                
+                if (itemType == "appetizer") {
                     c.MCGame(itemType);
                     c.typingGame(itemType);
-                    if (i == groupSize - 1) {
-                        typeFlag++;
-                    }
-                }
-                else if (typeFlag == 2 && itemType == "main course") {
-                    c.MCGame(itemType);
-                    c.typingGame(itemType);
-                    if (i == groupSize - 1) {
-                        typeFlag++;
-                    }
-                }
-                else if (typeFlag == 3 && itemType == "dessert") {
-                    c.MCGame(itemType);
-                    c.typingGame(itemType);
-                }
-                if (typeFlag != 3 && i == groupSize - 1) {
-                    i = -1;
-                    typeFlag++;
                 }
             }
-            */
+
+            for (int i = 0; i < groupSize; i++) {
+                string itemType = m.getItemType(customerOrders.getOrdersList().at(i).itemNumber);
+
+                if (itemType == "main course") {
+                    c.MCGame(itemType);
+                    c.typingGame(itemType);
+                }
+            }
+
+            for (int i = 0; i < groupSize; i++) {
+                string itemType = m.getItemType(customerOrders.getOrdersList().at(i).itemNumber);
+                
+                if (itemType == "dessert") {
+                    c.MCGame(itemType);
+                    c.typingGame(itemType);
+                }
+            }
 
             // Play typing game for clean-up
-            cout << "You're almost done! ";
+            cout << "You're done prepping the meals! Time to clean up!" << endl;
             c.MCGame("clean");
+            cout << endl;
 
         //server screen
-        cout << "You are now Server " << s.Employee::getEmployeeName() << "! 👱" << endl;
+        cout << "You are now Server " << s.Employee::getEmployeeName() << "! 👱" << endl << endl;
         cout << "Now that the food is prepared, it is time to serve your table..." << endl;
-        cout << "Do you remember what menu item each person ordered?" << endl;
-        cout << endl;
+        cout << "Do you remember what menu item each person ordered?" << endl << endl;
 
             //serve customers their food in correct order
             int enteredMenuItem = 0;
@@ -367,7 +368,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         
         //pay bill
         cout << "Looks like the party just finished their meal and paid the bill..." << endl;
-        cout << "Congrats! You made $" << billTotalAmount << " dollars for your restaurant." << endl;
+        cout << "Congrats! You made $" << billTotalAmount << " dollars for your restaurant." << endl << endl;
         this->setBalance(this->getBalance() + billTotalAmount);
             
 

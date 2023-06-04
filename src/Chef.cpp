@@ -10,22 +10,38 @@ Chef::Chef() {
 }
 
 void Chef::MCGame(string type) {
-    cout << "Here are the tasks you need to complete. Type them out in the correct order." << endl;
-    string entry;
     string answer;
+    string entry;
     int numTries = 1;
 
-    if (type == "appetizer") {
+    cout << "Here are your tasks! Type them out (by letter) in the correct order." << endl << endl;
 
+    if (type == "appetizer") {
+        cout << "For the appetizer..." << endl;
+        cout << "a) Turn on the stove" << endl;
+        cout << "b) Gather ingredients" << endl;
+        cout << "c) Get small serving plates" << endl;
+        cout << "d) Wash your hands" << endl;
+
+        answer = "dbac";
     }
     else if (type == "main course") {
+        cout << "For the main course..." << endl;
+        cout << "a) Chop up the ingredients" << endl;
+        cout << "b) Get big serving plates" << endl;
+        cout << "c) Get out pans" << endl;
+        cout << "d) Take out spices" << endl;
+        cout << "e) Wash vegetables" << endl;
 
+        answer = "edcab";
     }
     else if (type == "dessert") {
+        cout << "For the dessert..." << endl;
         cout << "a) Preheat the oven" << endl;
         cout << "b) Get small serving plate" << endl;
         cout << "c) Get the sugar" << endl;
-        cout << "d) Get out mixing bowls" << endl;
+        cout << "d) Take out mixing bowls" << endl;
+
         answer = "adcb";
     }
     else if (type == "clean") {
@@ -33,54 +49,107 @@ void Chef::MCGame(string type) {
         cout << "b) Clean your station" << endl;
         cout << "c) Mop the floor" << endl;
         cout << "d) Prep for the next day" << endl;
+
         answer = "bacd";
     }
 
     while (numTries <= 2) {
-        cout << "Answer: " << endl;
+        cout << "Answer: ";
         cin >> entry;
+        cout << endl;
+
         if (answer == entry) {
-            cout << "That's Correct!" << endl;
+            cout << "That's Correct! ✅" << endl;
             break;
         }
         else if (numTries == 2) {
-            cout << "That's Incorrect. Balance Decreased." << endl;
-            // Multiply restaurant balance by 0.9
+            cout << "That's Incorrect. Balance Decreased. ❌" << endl; // Multiply restaurant balance by 0.9
             break;
         }
         else if (numTries == 1) {
-            cout << "That's Incorrect. Try Again." << endl;
+            cout << "That's Incorrect. Try Again. 👎" << endl;
             numTries++;
         }
     }
 }
 
 void Chef::typingGame(string type) {
-    cout << endl << "Let's get to work!" << endl;
-    if (type == "appetizer") {
+    cout << endl << "Let's get to work! Chop chop! ⏲️" << endl;
 
+    if (type == "appetizer") {
+        string appEntry;
+
+        cout << "Enter 'Chop' to chop the ingredients: ";
+        cin >> appEntry;
+        cout << endl;
+
+        if (appEntry == "Chop" || appEntry == "chop") {
+            cout << "Chopping...🔪" << endl;
+        }
+        else {
+            cout << "That's Incorrect. Balance Decreased. ❌" << endl; //add functionality to decrease balance
+        }
+        
+        cout << "Enter 'Cook' to cook the appetizer: ";
+        cin >> appEntry;
+        cout << endl;
+
+        if (appEntry == "Cook" || appEntry == "cook") {
+            cout << "Cooking..." << endl << endl;
+        }
+        else {
+            cout << "That's Incorrect. Balance Decreased. ❌" << endl; //add functionality to decrease balance
+        }
     }
     else if (type == "main course") {
+        string mainEntry;
+
+        cout << "Enter 'Mix' to mix the ingredients: ";
+        cin >> mainEntry;
+        cout << endl;
+
+        if (mainEntry == "Mix" || mainEntry == "mix") {
+            cout << "Mixing...🥣" << endl;
+        }
+        else {
+            cout << "That's Incorrect. Balance Decreased. ❌" << endl; //add functionality to decrease balance
+        }
+        
+        cout << "Enter 'Sizzle' to cook the main course: ";
+        cin >> mainEntry;
+        cout << endl;
+
+        if (mainEntry == "Sizzle" || mainEntry == "sizzle") {
+            cout << "Sizzling...🔥" << endl << endl;
+        }
+        else {
+            cout << "That's Incorrect. Balance Decreased. ❌" << endl; //add functionality to decrease balance
+        }
 
     }
     else if (type == "dessert") {
         string dessertEntry;
-        cout << "Enter \"Bake\" to bake the dessert: ";
+
+        cout << "Enter 'Bake' to bake the dessert: ";
         cin >> dessertEntry;
+        cout << endl;
+
         if (dessertEntry == "Bake" || dessertEntry == "bake") {
             cout << "Baking..." << endl;
         }
         else {
-            cout << "That's Incorrect. Balance Decreased." << endl;
+            cout << "That's Incorrect. Balance Decreased. ❌" << endl; //add functionality to decrease balance
         }
         
-        cout << "Enter \"Decorate\" to decorate the dessert: ";
+        cout << "Enter 'Decorate' to decorate the dessert: ";
         cin >> dessertEntry;
+        cout << endl;
+
         if (dessertEntry == "Decorate" || dessertEntry == "decorate") {
-            cout << "Decorating..." << endl;
+            cout << "Decorating..." << endl << endl;
         }
         else {
-            cout << "That's Incorrect. Balance Decreased." << endl;
+            cout << "That's Incorrect. Balance Decreased. ❌" << endl; //add functionality to decrease balance
         }
     }
 }
