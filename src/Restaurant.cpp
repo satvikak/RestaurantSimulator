@@ -330,6 +330,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 if (itemType == "appetizer") {
                     c.MCGame(itemType);
                     c.typingGame(itemType);
+                    break;
                 }
             }
 
@@ -339,6 +340,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 if (itemType == "main course") {
                     c.MCGame(itemType);
                     c.typingGame(itemType);
+                    break;
                 }
             }
 
@@ -348,11 +350,12 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 if (itemType == "dessert") {
                     c.MCGame(itemType);
                     c.typingGame(itemType);
+                    break;
                 }
             }
 
             // Play typing game for clean-up
-            cout << "You're done prepping the meals! Time to clean up!" << endl;
+            cout << "You're done prepping the meals! Time to clean up! 🧹" << endl;
             c.MCGame("clean");
             cout << endl;
 
@@ -368,7 +371,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         
         //pay bill
         cout << "Looks like the party just finished their meal and paid the bill..." << endl;
-        cout << "Congrats! You made $" << billTotalAmount << " dollars for your restaurant." << endl << endl;
+        cout << "Congrats! You made $" << billTotalAmount << " dollars for your restaurant. 💰" << endl << endl;
         this->setBalance(this->getBalance() + billTotalAmount);
             
 
