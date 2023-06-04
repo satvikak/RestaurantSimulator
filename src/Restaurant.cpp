@@ -139,7 +139,6 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
     this->setRestaurantName(restaurantName);
     cout << endl;
     
-    //Manager* m = new Manager();
     int cycleNum = 1; //counter to keep track of number of cycles in game
 
     while (this->getRating() >= 2 && this->getBalance() > 0) {
@@ -195,7 +194,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 double _foodPrice = 0.0;
                 string userInput = "y";
 
-                while (userInput != "n") {  //include user input validation
+                while (userInput != "n") {
                     _menuNumber++;
 
                     cout << "Enter food type ('a' = appetizer, 'm' = main course, 'd' = dessert): ";
@@ -375,9 +374,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             cout << this->getRestaurantName() << " Review: " << this->getRating() << "/5 Stars ⭐" << endl;
             cout << this->getRestaurantName() << " Balance: $" << this->getBalance() << " 💵" << endl << endl;
 
-        //delete anything allocated with new
-            //delete newMenuItem; //compiler error when trying to delete (Valgrind looks fine)
-        
+ 
         //display message based on whether results pass or fail
         if (this->getRating() >= 2 && this->getBalance() > 0) {
                 string userChoice;
@@ -398,6 +395,8 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                     }
                     delete[] myTables;
 
+                    delete newCustomers;
+
                     return; //end game
                 }
                 else if (userChoice == "c") {
@@ -413,6 +412,8 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 delete myTables[row];
             }
             delete[] myTables;
+
+            delete newCustomers;
 
             return; //end game
         }
