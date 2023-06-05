@@ -3,9 +3,11 @@
 
 #include "../header/Customer.h"
 #include "../header/OrderNode.h"
+
 #include <iostream>
 #include <list>
-#include<vector>
+#include <vector>
+
 using namespace std;
 
 class Order {

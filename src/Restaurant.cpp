@@ -347,7 +347,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             }
             cout << endl;
 
-            //prompt mc and typing game in order of appetizer, main course, and dessert
+            // Prompt mc and typing game in order of appetizer, main course, and dessert
             for (int i = 0; i < groupSize; i++) {
                 string itemType = m.getItemType(customerOrders.getOrdersList().at(i).itemNumber);
                 
@@ -378,10 +378,18 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 }
             }
 
-            // Play typing game for clean-up
+            // Prompt typing game for clean-up
             cout << "You're done prepping the meals! Time to clean up! 🧹" << endl;
             c.MCGame("clean");
             cout << endl;
+
+            // Adjust restaurant balance for chef's mistakes
+            for (int i = 0; i < c.getMistakes(); i++) {
+                this->setBalance(this->getBalance() * 0.9);
+                if (this->getRating() >= 0.1) {
+                    this->setRating(this->getRating() - 0.1);
+                }
+            }
 
         //server screen
         cout << "You are now Server " << s.Employee::getEmployeeName() << "! 👱" << endl << endl;
