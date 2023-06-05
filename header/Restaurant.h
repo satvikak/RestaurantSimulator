@@ -20,12 +20,12 @@ class Restaurant {
         void setBalance(double restBalance);
         const double getBalance();
         void setRating(double restRating);
-        void createFloorPlan();
+        void displayFloorPlan(int userNum);
+        void createTablesArray(int userNum);
         void simulateRestaurant();
         const double getRating();
-
         string validateStringInput(string userInput, int num);
-        int validateIntInput(int userInput, int num);
+        int validateIntInput(int userInput, int num, int upperBound);
         double validateDoubleInput(double userInput, int num);
     
     private:
@@ -33,7 +33,6 @@ class Restaurant {
         vector<string> names{"Angelica", "Ben", "Angel", "Ryan", "Sophia", "Ruby", "Carly", "Lexi", "Joshua", "Ken", "Raquel", "Beth", "Rio", "Fiona", "Richard"};
         double restaurantBalance;
         double rating;
-        int numTables;
         Manager m;
         Server s;
         Chef c;
