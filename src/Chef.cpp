@@ -18,7 +18,8 @@ void Chef::MCGame(string type) {
     string entry;
     int numTries = 1;
 
-    cout << "Here are your tasks! Type them out (by letter) in the correct order." << endl << endl;
+    cout << "Here are your tasks! Type them out (by letter) in the correct order." << endl;
+    cout << "Example: \"cbda\"" << endl << endl;
 
     if (type == "appetizer") {
         cout << "For the appetizer..." << endl;
