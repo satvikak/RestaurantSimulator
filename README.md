@@ -54,7 +54,7 @@ This project is important for our group because we have all grown up playing rol
 To make the order itself, the chef will type what is prompted to the screen exactly as stated to mimic cooking the order. The Chef class inherits from the Employee class to allow an object of Chef to set their own name.
 
 ## Navigation Diagram
-![Navigation Diagram drawio](https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/5aac4d39-615d-44f8-87a1-b588a9ff7d3c)
+<img width="517" alt="Screenshot 2023-06-06 at 2 52 11 PM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/8ef10770-f7be-4788-98c3-2d7485956f43">
 
 
 ## Screen Layout
