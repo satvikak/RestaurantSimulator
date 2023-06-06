@@ -56,7 +56,6 @@ To make the order itself, the chef will type what is prompted to the screen exac
 ## Navigation Diagram
 <img width="517" alt="Screenshot 2023-06-06 at 2 52 11 PM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/8ef10770-f7be-4788-98c3-2d7485956f43">
 
-
 ## Screen Layout
 <img width="518" alt="Screenshot 2023-05-26 at 9 35 21 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/06626895-c7ec-4adb-aea3-6b522b9331fe">
 <img width="518" alt="Screenshot 2023-05-26 at 9 35 41 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/a1f0d2b8-7324-45bd-a6a8-9d3a0695e092">
@@ -80,6 +79,16 @@ To make the order itself, the chef will type what is prompted to the screen exac
  ## Screenshots
  > Screenshots of the input/output after running your application
  ## Installation/Usage
- > Instructions on installing and running your application
+ > Clone this repository using the following commands in the terminal:
+ ```sh
+$ git clone https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035.git
+$ cd final-project-skamm006-sbhan020-schau062-vsing035
+$ cmake .
+$ make
+```
+> Two executables will be created (test & play). Run the play executable to play the game:
+ ```sh
+$ ./play
+```
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
