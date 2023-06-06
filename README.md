@@ -79,14 +79,14 @@ To make the order itself, the chef will type what is prompted to the screen exac
  ## Screenshots
  > Screenshots of the input/output after running your application
  ## Installation/Usage
- > Clone this repository using the following commands in the terminal:
+ Clone this repository using the following commands in the terminal:
  ```sh
 $ git clone https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035.git
 $ cd final-project-skamm006-sbhan020-schau062-vsing035
 $ cmake .
 $ make
 ```
-> Two executables will be created (test & play). Run the play executable to play the game:
+Two executables will be created (test & play). Run the play executable to play the game:
  ```sh
 $ ./play
 ```
