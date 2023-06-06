@@ -8,7 +8,6 @@ using namespace std;
 class Employee {
     public:
         Employee();
-        ~Employee();
         void setEmployeeName(string empName);
         const string& getEmployeeName() const;
         virtual void printCharacterDetails() = 0;

@@ -8,10 +8,6 @@ Employee::Employee() {
     employeeName = "";
 }
 
-Employee::~Employee() {
-    
-}
-
 void Employee::setEmployeeName(string empName) {
     employeeName = empName;
 }
