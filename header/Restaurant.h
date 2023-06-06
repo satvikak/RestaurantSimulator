@@ -14,16 +14,15 @@ using namespace std;
 class Restaurant {
     public:
         Restaurant();
-        ~Restaurant();
         void setRestaurantName(string restName);
         const string& getRestaurantName() const;
         void setBalance(double restBalance);
         const double getBalance();
         void setRating(double restRating);
+        const double getRating();
         void displayFloorPlan(int userNum);
         void createTablesArray(int userNum);
         void simulateRestaurant();
-        const double getRating();
         string validateStringInput(string userInput, int num);
         int validateIntInput(int userInput, int num, int upperBound);
         double validateDoubleInput(double userInput, int num);
