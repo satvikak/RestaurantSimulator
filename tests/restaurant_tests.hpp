@@ -48,7 +48,8 @@ TEST(RestaurantTests, setRating) {
     EXPECT_DOUBLE_EQ(rest.getRating(), 2.5);
 }
 
-// Sequence of methods to call
+/*
+// Going to be way too complex (also changes often when we add steps)
 class MockRestaurant : public Restaurant{
     public: 
     MOCK_METHOD(void, setRestaurantName, (string restName));
@@ -74,5 +75,6 @@ TEST(RestaurantTests, simulateRestaurant) {
 
     rest.simulateRestaurant();
 }
+*/
 
 #endif
