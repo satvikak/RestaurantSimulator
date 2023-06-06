@@ -12,6 +12,7 @@ Server::Server() {
     myTables = nullptr;
     chosenTable = nullptr;
     numTables = 0;
+    numMistakes = 0;
 }
 
 Server::~Server() {
@@ -113,7 +114,6 @@ void Server::serveCustomer(int customerNum, string nameItem) {
         for(int i=0; i<userGuess.length(); ++i) {
             userGuessLower+=tolower(userGuess[i]);
         }
-        cout<<nameItemLower<<"        "<<userGuessLower<<endl;
         if(userGuessLower==nameItemLower) {
             cout << "That's Correct! ✅" << endl;
             cout<<"Serving "<<(ordersCreation.at(customerNum)).getCustomerName()<<" their order!"<<endl<<endl;
@@ -138,7 +138,7 @@ void Server::serveCustomer(int customerNum, string nameItem) {
 }
 
 void Server::openUpTables(int userNum) {
-    int numTables = userNum;
+    numTables = userNum;
     myTables = new Table*[numTables];            //Creates pointer to array of Table objects
     for(unsigned int i=0; i<numTables; ++i) {
         myTables[i] = new Table();              //Initializes Table objects

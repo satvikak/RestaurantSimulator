@@ -338,7 +338,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 }
             
             // Adjust restaurant balance for server's mistakes
-                for (int i = 0; i < s.getMistakes(); i++) {
+                for (unsigned int i = 0; i < s.getMistakes(); i++) {
                     this->setBalance(this->getBalance() * 0.9);
                     if (this->getRating() >= 0.1) {
                         this->setRating(this->getRating() - 0.1);
