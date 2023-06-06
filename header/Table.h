@@ -12,7 +12,7 @@ class Table {
         Table();
         ~Table();
         void setCustomerGroup(Customer* group);
-        const Customer* getCustomerGroup();
+        Customer* getCustomerGroup() const;
         const int getOrders(); //delete? repetitive with takeOrder() in Server.h
         const int getSeats() const;
         void setSeats(int freeSeats);

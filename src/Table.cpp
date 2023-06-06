@@ -14,14 +14,15 @@ Table::Table() {
 }
 
 Table::~Table() {
-    
+    delete this->getCustomerGroup();
+    this->setCustomerGroup(nullptr);
 }
 
 void Table::setCustomerGroup(Customer* group) {
     customerGroup = group;
 }
 
-const Customer* Table::getCustomerGroup() {
+Customer* Table::getCustomerGroup() const {
     return customerGroup;
 }
 

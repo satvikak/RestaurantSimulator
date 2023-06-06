@@ -57,6 +57,14 @@ string Manager::getItemType(int itemNumber) {
     return curr->getFoodType();
 }
 
+string Manager::getItemName(int itemNumber) {
+    MenuItem* curr = head;
+    for (int i = 1; i < itemNumber; i++) {
+        curr = curr->next;
+    }
+    return curr->getFoodItem();
+}
+
 int Manager::getLastMenuNumber() {
     MenuItem* curr = head;
 
