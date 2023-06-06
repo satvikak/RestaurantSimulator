@@ -11,6 +11,8 @@
 #include <iomanip>
 #include <stdlib.h>
 #include <string>
+#include <vector>
+#include <chrono>
 
 using namespace std;
 
@@ -18,7 +20,6 @@ Restaurant::Restaurant() {
     restaurantName = "";
     restaurantBalance = 100.0;
     rating = 5.0;
-    numTables = 15;
     m = Manager();
     s = Server();
     c = Chef();
@@ -52,7 +53,8 @@ void Restaurant::setRating(double restRating) {
     rating = restRating;
 }
 
-void Restaurant::createFloorPlan() { 
+void Restaurant::displayFloorPlan(int userNum) { 
+    int numTables = userNum;
     int tableNumber = 1;
     int numRows = 0;
     int tablesPerRow = 5;
@@ -122,7 +124,10 @@ void Restaurant::createFloorPlan() {
         }
         cout<<endl;
     }
+}
 
+void Restaurant::createTablesArray(int userNum) {
+    int numTables = userNum;
     myTables = new Table*[numTables];            //Creates pointer to array of Table objects
     for(unsigned int i=0; i<numTables; ++i) {
         myTables[i] = new Table();              //Initializes Table objects
@@ -139,17 +144,25 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
     this->setRestaurantName(restaurantName);
     cout << endl;
     
+    int numTables = 0; //Counter to ensure number of tables is consistent during each cycle
     int cycleNum = 1; //counter to keep track of number of cycles in game
+
+    vector<int> tablesToClear; //Vector to clear customers from a table after a certain period of time
 
     while (this->getRating() >= 2 && this->getBalance() > 0) {
         //manager screen
         if (cycleNum == 1) {
             m.printCharacterDetails();
             cout << endl;
+            cout << "Enter the number of tables you would like in your restaurant: ";
+            cin >> numTables;
+            cout << endl;
+            createTablesArray(numTables);
         }
         else {
             cout << "You are now Manager " << m.Employee::getEmployeeName() << "! 🎉" << endl << endl;
         }
+            
             //create menu
             if (cycleNum >= 2) {
                 string makeChange;
@@ -236,7 +249,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
             //display floorplan
             cout<<"Here is the floorplan for your restaurant: "<<endl << endl;
-            this->createFloorPlan();
+            this->displayFloorPlan(numTables);
 
             //seat a customer
             int totalMenuItems = m.getLastMenuNumber();
@@ -254,17 +267,26 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             }
             cout << "waiting to be seated!" << endl << endl;
 
+            for(unsigned int i=0; i<tablesToClear.size(); ++i) {        //Checks if any tables need to be cleared
+                Table* currentTable = myTables[tablesToClear.at(i)-1];
+                currentTable->setExitTime(chrono::steady_clock::now());
+                if(currentTable->getTotalTime()>120) {                  //Removes old customers every 120 seconds, can be changed to less if needed
+                    delete currentTable->getCustomerGroup();
+                    currentTable->setCustomerGroup(nullptr);
+                    currentTable->setSeats(6);
+                }
+            }
 
             int chosenTableNumber = -1;
             string input = "y";
             do {
                 cout<<"Enter a number corresponding to an open table: ";
                 cin>>chosenTableNumber;
-                chosenTableNumber = validateIntInput(chosenTableNumber, 1);
+                chosenTableNumber = validateIntInput(chosenTableNumber, 1, numTables);
                 cout << endl;
                 cout<<"Open seats at Table #"<<chosenTableNumber<<": "<<myTables[chosenTableNumber-1]->getSeats()<<endl;
                 if (!myTables[chosenTableNumber-1]->getAvailability()) {
-                    cout << "This table is occupied. Choose another." << endl; 
+                    cout << "It looks like customers from the previous round are still chatting here! Choose another." << endl; 
                 } else {
                     cout << "This table is free! Would you like to seat the group here? ('y' = yes, 'n' = no): ";
                     cin >> input;
@@ -274,6 +296,10 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
             Table* chosenTable = myTables[chosenTableNumber-1];
             chosenTable->setCustomerGroup(newCustomers);
+            chosenTable->adjustLeftoverSeats(groupSize);
+            chosenTable->setTableNum(chosenTableNumber);
+            chosenTable->setEntryTime(chrono::steady_clock::now());
+            tablesToClear.push_back(chosenTable->getTableNum());
 
             // Take customer order
             cout << endl;
@@ -283,7 +309,6 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             cin >> enter;
             enter = validateStringInput(enter, 3);
             cout << endl;
-
             // view orders
             cout << "You asked them for their order, this is what they want: " << endl << endl;
             Order customerOrders;
@@ -463,11 +488,11 @@ string Restaurant::validateStringInput(string userInput, int num) {
     return newInput;
 }
 
-int Restaurant::validateIntInput(int userInput, int num) {
+int Restaurant::validateIntInput(int userInput, int num, int upperBound) {
     int newInput = userInput;
 
     if (num == 1) {
-        while (newInput <= 0 || newInput > 15) {
+        while (newInput <= 0 || newInput > upperBound) {
             cout << endl << "Invalid table number, try again: ";
             cin >> newInput;
         }
