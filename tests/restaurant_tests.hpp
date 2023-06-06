@@ -9,72 +9,100 @@
 using ::testing::InSequence;
 
 // Getters and setters
-TEST(RestaurantTests, getName) {
+TEST(RestaurantGetters, getName) {
     Restaurant rest;
     string name = rest.getRestaurantName();
     EXPECT_EQ(name, "");
 }
 
-TEST(RestaurantTests, setName) {
+TEST(RestaurantSetters, setName) {
     Restaurant rest;
     string name = "...";
     rest.setRestaurantName(name);
     EXPECT_EQ(rest.getRestaurantName(), "...");
 }
 
-TEST(RestaurantTests, getBalance) {
+TEST(RestaurantGetters, getBalance) {
     Restaurant rest;
     double balance = rest.getBalance();
     EXPECT_DOUBLE_EQ(balance, 100.0);
 }
 
-TEST(RestaurantTests, setBalance) {
+TEST(RestaurantSetters, setBalance) {
     Restaurant rest;
     double balance = 50.0;
     rest.setBalance(balance);
     EXPECT_DOUBLE_EQ(rest.getBalance(), 50.0);
 }
 
-TEST(RestaurantTests, getRating) {
+TEST(RestaurantGetters, getRating) {
     Restaurant rest;
     double rate = rest.getRating();
     EXPECT_DOUBLE_EQ(rate, 5.0);
 }
 
-TEST(RestaurantTests, setRating) {
+TEST(RestaurantSetters, setRating) {
     Restaurant rest;
     double rate = 2.5;
     rest.setRating(rate);
     EXPECT_DOUBLE_EQ(rest.getRating(), 2.5);
 }
 
-/*
-// Going to be way too complex (also changes often when we add steps)
-class MockRestaurant : public Restaurant{
-    public: 
-    MOCK_METHOD(void, setRestaurantName, (string restName));
-    MOCK_METHOD(string, getRestaurantName, ());
-    MOCK_METHOD(double, getBalance, ());
-    MOCK_METHOD(double, getRating, ());
-    MOCK_METHOD(void, createFloorPlan, ());
-};
-
-TEST(RestaurantTests, simulateRestaurant) {
-    MockRestaurant rest;
-    string restaurantName = "";
-
-    InSequence seq;
-    EXPECT_CALL(rest, setRestaurantName(restaurantName));
-    EXPECT_CALL(rest, getRating());
-    EXPECT_CALL(rest, getBalance());
-    EXPECT_CALL(rest, createFloorPlan());
-    EXPECT_CALL(rest, getRestaurantName());
-    EXPECT_CALL(rest, getRating());
-    EXPECT_CALL(rest, getRestaurantName());
-    EXPECT_CALL(rest, getBalance());
-
-    rest.simulateRestaurant();
+// Input Validation
+TEST(RestaurantStringValid, foodType) {
+    Restaurant rest;
+    string appetizer = "a";
+    string main = "m";
+    string dessert = "d";
+    EXPECT_EQ(rest.validateStringInput(appetizer, 1), "a");
+    EXPECT_EQ(rest.validateStringInput(main, 1), "m");
+    EXPECT_EQ(rest.validateStringInput(dessert, 1), "d");
 }
-*/
+
+TEST(RestaurantStringValid, yesNo) {
+    Restaurant rest;
+    string yes = "y";
+    string no = "n";
+    EXPECT_EQ(rest.validateStringInput(yes, 2), "y");
+    EXPECT_EQ(rest.validateStringInput(no, 2), "n");
+}
+
+TEST(RestaurantStringValid, yes) {
+    Restaurant rest;
+    string yes = "y";
+    EXPECT_EQ(rest.validateStringInput(yes, 3), "y");
+}
+
+TEST(RestaurantStringValid, contQuit) {
+    Restaurant rest;
+    string cont = "c";
+    string quit = "q";
+    EXPECT_EQ(rest.validateStringInput(cont, 4), "c");
+    EXPECT_EQ(rest.validateStringInput(quit, 4), "q");
+}
+
+TEST(RestaurantIntValid, lowerBound) {
+    Restaurant rest;
+    int input = 1;
+    EXPECT_EQ(rest.validateIntInput(input, 1, 5), 1);
+}
+
+TEST(RestaurantIntValid, upperBound) {
+    Restaurant rest;
+    int input = 5;
+    EXPECT_EQ(rest.validateIntInput(input, 1, 5), 5);
+}
+
+TEST(RestaurantDoubleValid, lowerBound) {
+    Restaurant rest;
+    double input = 0.01;
+    EXPECT_EQ(rest.validateDoubleInput(input, 1), 0.01);
+}
+
+TEST(RestaurantDoubleValid, upperBound) {
+    Restaurant rest;
+    double input = 1000.0;
+    EXPECT_EQ(rest.validateDoubleInput(input, 1), 1000.0);
+}
 
 #endif

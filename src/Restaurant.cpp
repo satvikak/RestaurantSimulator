@@ -25,10 +25,6 @@ Restaurant::Restaurant() {
     c = Chef();
 }
 
-Restaurant::~Restaurant() {
-
-}
-
 const string& Restaurant::getRestaurantName() const {
     return restaurantName;
 }
