@@ -57,10 +57,10 @@ To make the order itself, the chef will type what is prompted to the screen exac
 <img width="517" alt="Screenshot 2023-06-06 at 2 52 11 PM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/8ef10770-f7be-4788-98c3-2d7485956f43">
 
 ## Screen Layout
-<img width="518" alt="Screenshot 2023-05-26 at 9 35 21 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/06626895-c7ec-4adb-aea3-6b522b9331fe">
-<img width="518" alt="Screenshot 2023-05-26 at 9 35 41 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/a1f0d2b8-7324-45bd-a6a8-9d3a0695e092">
-<img width="518" alt="Screenshot 2023-05-26 at 9 35 57 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/01ebd06d-7477-42e3-a5f0-6c2113017515">
-<img width="518" alt="Screenshot 2023-05-26 at 9 36 10 AM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/2002a431-66f0-4606-8f91-3b8fb92c9c7d">
+<img width="583" alt="Pic1" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/41afbdf2-1a01-4471-9970-1a0456ff1db9">
+<img width="583" alt="Pic2" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/aacd2d34-d9a3-4b52-8cc4-3f81b5a02be0">
+<img width="583" alt="Pic3" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/ba6aa4db-48bf-4ff2-9078-2467267faea3">
+<img width="583" alt="Pic4" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/a3a3596d-7add-44ec-aa53-cf0bcac07b1c">
  
  ## Phase III (SOLID Principle Changes)
 * For our first major change, we applied the Single Responsibility Principle (SRP). When first designing the UML diagram, we intended for the Server to have some type of implementation for taking a Customer’s order. However, we decided to take our TA’s suggestion of making a separate Order class since it is something that may be utilized by multiple classes. For instance, the Server class uses the Order class to keep track of the Customers’ orders, the Chef class uses it to make the dish, and the Server must use it to serve the Customers their respective dishes. Keeping this in mind, it did not make sense to implement the Order class within the Server class, so we developed a whole new class instead. This change was helpful in managing the tasks of each individual. The Server and Chef do not need to worry about implementing their own Order, but can now use the class while focusing on their respective tasks. In fact, now it is also easier for the Customers’ information and data to be passed between the Server and the Chef as it is a class that is accessible by the both of them.
