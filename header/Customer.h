@@ -20,14 +20,13 @@ class Customer {
         void setRandomPartySize();
         void setRandomNames(vector<string>& names);
         void setNumberofMenuItems(int num);
+        OrderNode generateRandomOrder(string name);
+        const int getNumberOfMenuItems();
     
     private:
         int groupSize;
         int numMenuItems;                 // Used internally
         vector<string> customerNames;     // list of random names for customers
-
-        //Private helper methods
-        OrderNode generateRandomOrder(string name);
 
 };
 

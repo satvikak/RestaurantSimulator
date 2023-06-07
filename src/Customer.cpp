@@ -82,3 +82,7 @@ void Customer::setRandomNames(vector<string>& names) {
 void Customer::setNumberofMenuItems(int num) {
     numMenuItems = num;
 }
+
+const int Customer::getNumberOfMenuItems() {
+    return numMenuItems;
+}
