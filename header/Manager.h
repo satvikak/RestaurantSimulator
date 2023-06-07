@@ -15,6 +15,7 @@ class Manager : public Employee {
         void menuAdd(MenuItem* newNode);
         void changeMenuPrice(int itemNumber, double newPrice);
         string getItemType(int itemNumber);
+        string getItemName(int itemNumber);
         int getLastMenuNumber();
         void viewFullMenu();
         void clearFullMenu();

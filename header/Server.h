@@ -2,6 +2,8 @@
 #define SERVER_H
 
 #include "../header/Employee.h"
+#include "../header/Table.h"
+#include "../header/OrderNode.h"
 
 #include <iostream>
 
@@ -11,14 +13,25 @@ class Server : public Employee  {
     public:
         Server();
         ~Server();
-        void seatCustomer();
-        void displayMenu();
-        void takeOrder();
-        void serveCustomer();
+        void seatCustomer(int itemsForCustomer, int userNumTables);
+        vector<OrderNode>& takeOrder();
+        void serveCustomer(int customerNum, string nameItem);
         void printCharacterDetails();
+        void openUpTables(int userNum);
+        void clearUsedTables();
+        void printCustomerOrders(vector<OrderNode>& ordersList);
+        void billTable(int totalPrice);
+        void removeOrders();
+        int getMistakes() const;
     
     private:
-
+        Table** myTables;
+        Table* chosenTable;
+        vector<int> tablesToClear;
+        vector<string> names{"Angelica", "Ben", "Angel", "Ryan", "Sophia", "Ruby", "Carly", "Lexi", "Joshua", "Ken", "Raquel", "Beth", "Rio", "Fiona", "Richard"};
+        vector<OrderNode> ordersCreation;
+        int numTables;
+        int numMistakes;
 };
 
 #endif

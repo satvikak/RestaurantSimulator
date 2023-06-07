@@ -5,6 +5,7 @@
 #include "../header/Manager.h"
 #include "../header/Server.h"
 #include "../header/Chef.h"
+#include "../header/Employee.h"
 
 #include <iostream>
 #include <vector>
@@ -21,7 +22,7 @@ class Restaurant {
         void setRating(double restRating);
         const double getRating();
         void displayFloorPlan(int userNum);
-        void createTablesArray(int userNum);
+        //void createTablesArray(int userNum);
         void simulateRestaurant();
         string validateStringInput(string userInput, int num);
         int validateIntInput(int userInput, int num, int upperBound);
@@ -29,7 +30,7 @@ class Restaurant {
     
     private:
         string restaurantName;
-        vector<string> names{"Angelica", "Ben", "Angel", "Ryan", "Sophia", "Ruby", "Carly", "Lexi", "Joshua", "Ken", "Raquel", "Beth", "Rio", "Fiona", "Richard"};
+        //vector<string> names{"Angelica", "Ben", "Angel", "Ryan", "Sophia", "Ruby", "Carly", "Lexi", "Joshua", "Ken", "Raquel", "Beth", "Rio", "Fiona", "Richard"};
         double restaurantBalance;
         double rating;
         Manager m;
@@ -38,7 +39,6 @@ class Restaurant {
     
     protected:
         string menuList; //linked list
-        Table **myTables;
 };
 
 #endif

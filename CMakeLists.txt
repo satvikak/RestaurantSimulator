@@ -9,11 +9,11 @@ ADD_EXECUTABLE(play
     src/Customer.cpp
     src/Employee.cpp
     src/Manager.cpp
-    src/Order.cpp
     src/Restaurant.cpp
     src/Server.cpp
     src/Table.cpp
     src/MenuItem.cpp
+    src/OrderNode.cpp
 )
 
 ADD_EXECUTABLE(test
@@ -22,11 +22,11 @@ ADD_EXECUTABLE(test
     src/Customer.cpp
     src/Employee.cpp
     src/Manager.cpp
-    src/Order.cpp
     src/Restaurant.cpp
     src/Server.cpp
     src/Table.cpp
     src/MenuItem.cpp
+    src/OrderNode.cpp
 )
 
 TARGET_LINK_LIBRARIES(test gtest)

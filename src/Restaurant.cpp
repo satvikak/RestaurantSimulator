@@ -5,7 +5,7 @@
 #include "../header/Manager.h"
 #include "../header/Server.h"
 #include "../header/Table.h"
-#include "../header/Order.h"
+#include "../header/OrderNode.h"
 
 #include <iostream>
 #include <iomanip>
@@ -122,14 +122,6 @@ void Restaurant::displayFloorPlan(int userNum) {
     }
 }
 
-void Restaurant::createTablesArray(int userNum) {
-    int numTables = userNum;
-    myTables = new Table*[numTables];            //Creates pointer to array of Table objects
-    for(unsigned int i=0; i<numTables; ++i) {
-        myTables[i] = new Table();              //Initializes Table objects
-    }
-}
-
 void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
     srand(time(NULL));
 
@@ -140,10 +132,8 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
     this->setRestaurantName(restaurantName);
     cout << endl;
     
-    int numTables = 0; //Counter to ensure number of tables is consistent during each cycle
+    int numTables = 0;
     int cycleNum = 1; //counter to keep track of number of cycles in game
-
-    vector<int> tablesToClear; //Vector to clear customers from a table after a certain period of time
 
     while (this->getRating() >= 2 && this->getBalance() > 0) {
         //manager screen
@@ -153,7 +143,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             cout << "Enter the number of tables you would like in your restaurant: ";
             cin >> numTables;
             cout << endl;
-            createTablesArray(numTables);
+            s.openUpTables(numTables);
         }
         else {
             cout << "You are now Manager " << m.Employee::getEmployeeName() << "! 🎉" << endl << endl;
@@ -250,80 +240,25 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             //seat a customer
             int totalMenuItems = m.getLastMenuNumber();
 
-            Customer* newCustomers = new Customer(names, totalMenuItems);
-            int groupSize = newCustomers->getGroupSize();
-            cout << endl;
+            s.clearUsedTables();
+            s.seatCustomer(totalMenuItems, numTables);
 
-            cout << "Your first task is to seat new customers. 🪑" << endl;
-            cout << "Looks like there's a group of " << groupSize;
-            if (groupSize < 2) {
-                cout << " person ";
-            } else {
-                cout << " people ";
-            }
-            cout << "waiting to be seated!" << endl << endl;
-
-            for(unsigned int i=0; i<tablesToClear.size(); ++i) {        //Checks if any tables need to be cleared
-                Table* currentTable = myTables[tablesToClear.at(i)-1];
-                currentTable->setExitTime(chrono::steady_clock::now());
-                if(currentTable->getTotalTime()>120) {                  //Removes old customers every 120 seconds, can be changed to less if needed
-                    delete currentTable->getCustomerGroup();
-                    currentTable->setCustomerGroup(nullptr);
-                    currentTable->setSeats(6);
-                }
-            }
-
-            int chosenTableNumber = -1;
-            string input = "y";
-            do {
-                cout<<"Enter a number corresponding to an open table: ";
-                cin>>chosenTableNumber;
-                chosenTableNumber = validateIntInput(chosenTableNumber, 1, numTables);
-                cout << endl;
-                cout<<"Open seats at Table #"<<chosenTableNumber<<": "<<myTables[chosenTableNumber-1]->getSeats()<<endl;
-                if (!myTables[chosenTableNumber-1]->getAvailability()) {
-                    cout << "It looks like customers from the previous round are still chatting here! Choose another." << endl; 
-                } else {
-                    cout << "This table is free! Would you like to seat the group here? ('y' = yes, 'n' = no): ";
-                    cin >> input;
-                    input = validateStringInput(input, 2);
-                }
-            } while (!myTables[chosenTableNumber-1]->getAvailability() || input == "n");
-
-            Table* chosenTable = myTables[chosenTableNumber-1];
-            chosenTable->setCustomerGroup(newCustomers);
-            chosenTable->adjustLeftoverSeats(groupSize);
-            chosenTable->setTableNum(chosenTableNumber);
-            chosenTable->setEntryTime(chrono::steady_clock::now());
-            tablesToClear.push_back(chosenTable->getTableNum());
-
-            // Take customer order
-            cout << endl;
-            cout << "Great! They love their seats. Your next job is to take their order. 📝" << endl;
-            cout << "Type 'y' when you are ready: ";
-            string enter;
-            cin >> enter;
-            enter = validateStringInput(enter, 3);
-            cout << endl;
-            // view orders
-            cout << "You asked them for their order, this is what they want: " << endl << endl;
-            Order customerOrders;
-            newCustomers->generateOrders(customerOrders.getOrdersList());
-            customerOrders.printOrders();
+            vector<OrderNode> customerOrders;
+            s.removeOrders();
+            customerOrders = s.takeOrder();
+            // newCustomers->generateOrders(customerOrders.getOrdersList());
+            //customerOrders.printOrders();
 
             cout << endl;
             cout << "Wonderful! Now that you have the orders, it's time for the chef to make the items... 🍲" << endl;
 
         //create bill
+        
         int billTotalAmount = 0;
-        int currentMenuItem = 0;
-        int numberOfMenuItems = m.getLastMenuNumber();
-        for (int i = 0; i < groupSize; i++) {
-            currentMenuItem = customerOrders.getOrdersList().at(i).itemNumber;
-            billTotalAmount += m.getPriceOfChosenMenuItem(currentMenuItem);
+        for(int i=0; i<customerOrders.size(); ++i) {
+            billTotalAmount+=m.getPriceOfChosenMenuItem((customerOrders.at(i)).getItemNumber());
         }
-        chosenTable->setBillAmount(billTotalAmount);
-
+        s.billTable(billTotalAmount);
 
         //chef screen
         if (cycleNum == 1) {
@@ -336,16 +271,16 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
             // Print orders with food type
             cout << "Here are the orders you need to prepare:" << endl;
-            for (int i = 0; i < groupSize; i++) {
-                int itemNumber = customerOrders.getOrdersList().at(i).itemNumber;
+            for (int i = 0; i < customerOrders.size(); i++) {
+                int itemNumber = (customerOrders.at(i)).getItemNumber();
                 string itemType = m.getItemType(itemNumber);
                 cout << "Item #" << itemNumber << " is a " << itemType << endl;
             }
             cout << endl;
 
             // Prompt mc and typing game in order of appetizer, main course, and dessert
-            for (int i = 0; i < groupSize; i++) {
-                string itemType = m.getItemType(customerOrders.getOrdersList().at(i).itemNumber);
+            for (int i = 0; i < customerOrders.size(); i++) {
+                string itemType = m.getItemType((customerOrders.at(i)).getItemNumber());
                 
                 if (itemType == "appetizer") {
                     c.MCGame(itemType);
@@ -354,8 +289,8 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 }
             }
 
-            for (int i = 0; i < groupSize; i++) {
-                string itemType = m.getItemType(customerOrders.getOrdersList().at(i).itemNumber);
+            for (int i = 0; i < customerOrders.size(); i++) {
+                string itemType = m.getItemType((customerOrders.at(i)).getItemNumber());
 
                 if (itemType == "main course") {
                     c.MCGame(itemType);
@@ -364,8 +299,8 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 }
             }
 
-            for (int i = 0; i < groupSize; i++) {
-                string itemType = m.getItemType(customerOrders.getOrdersList().at(i).itemNumber);
+            for (int i = 0; i < customerOrders.size(); i++) {
+                string itemType = m.getItemType((customerOrders.at(i)).getItemNumber());
                 
                 if (itemType == "dessert") {
                     c.MCGame(itemType);
@@ -389,12 +324,22 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
         //server screen
         cout << "You are now Server " << s.Employee::getEmployeeName() << "! 👱" << endl << endl;
-        cout << "Now that the food is prepared, it is time to serve your table..." << endl;
-        cout << "Do you remember what menu item each person ordered?" << endl << endl;
 
             //serve customers their food in correct order
-            int enteredMenuItem = 0;
-            cout  << "Serve the customers by entering what menu item they ordered: " << endl;
+                cout << "Now that the food is prepared, it is time to serve your table..." << endl;
+                cout << "Do you remember what menu item each person ordered?" << endl << endl;
+                cin.ignore();
+                for(int i=0; i<customerOrders.size(); ++i) {
+                    s.serveCustomer(i, m.getItemName((customerOrders.at(i)).getItemNumber()));
+                }
+            
+            // Adjust restaurant balance for server's mistakes
+                for (unsigned int i = 0; i < s.getMistakes(); i++) {
+                    this->setBalance(this->getBalance() * 0.9);
+                    if (this->getRating() >= 0.1) {
+                        this->setRating(this->getRating() - 0.1);
+                    }
+                }
 
         
         //pay bill
@@ -423,13 +368,6 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                     cout << "Hope you had fun role-playing in a restaurant! Until next time! 👋" << endl << endl;
                     m.clearFullMenu();
 
-                    for(unsigned int row=0; row<numTables; ++row) {
-                        delete myTables[row];
-                    }
-                    delete[] myTables;
-
-                    delete newCustomers;
-
                     return; //end game
                 }
                 else if (userChoice == "c") {
@@ -440,13 +378,6 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             cout << "Oh no! Seems like your restaurant didn't do too well. 🙁" << endl;
             cout << "Thanks for playing, better luck next time! 👋" << endl << endl;
             m.clearFullMenu();
-
-            for(unsigned int row=0; row<numTables; ++row) {
-                delete myTables[row];
-            }
-            delete[] myTables;
-
-            delete newCustomers;
 
             return; //end game
         }

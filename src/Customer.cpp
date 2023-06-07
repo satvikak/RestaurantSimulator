@@ -1,4 +1,5 @@
 #include "../header/Customer.h"
+#include "../header/OrderNode.h"
 
 #include <iostream>
 #include <cstdlib>
@@ -28,8 +29,8 @@ Customer::Customer(int numPeople, vector<string>& names, int menuItemsNum) {
 OrderNode Customer::generateRandomOrder(string name) {
     int randomOrderNumber = rand() % numMenuItems + 1;      // random number from 1 to largest menuItem number
     OrderNode newOrder;
-    newOrder.customerName = name;
-    newOrder.itemNumber = randomOrderNumber;
+    newOrder.setCustomerName(name);
+    newOrder.setItemNumber(randomOrderNumber);
     return newOrder;
     
 }
