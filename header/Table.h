@@ -13,15 +13,14 @@ class Table {
         ~Table();
         void setCustomerGroup(Customer* group);
         Customer* getCustomerGroup() const;
-        const int getOrders(); //delete? repetitive with takeOrder() in Server.h
         const int getSeats() const;
         void setSeats(int freeSeats);
         const int getTableNum() const;
         void setTableNum(int tableNum);
-        void adjustLeftoverSeats(int availableSeats);
+        void adjustLeftoverSeats(int takenSeats);
         const bool getAvailability();
         const double getBill() const;
-        void setBillAmount(int value);
+        void setBillAmount(double value);
         using time = decltype(chrono::steady_clock::now());
         void setEntryTime(time comeTime);
         auto getEntryTime() const;

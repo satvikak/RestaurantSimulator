@@ -11,6 +11,7 @@ Table::Table() {
     availableTable = true;
     billAmount = 0.0;
     customerGroup = nullptr;
+    tableNumber = 0;
 }
 
 Table::~Table() {
@@ -24,10 +25,6 @@ void Table::setCustomerGroup(Customer* group) {
 
 Customer* Table::getCustomerGroup() const {
     return customerGroup;
-}
-
-const int Table::getOrders() {
-    return 0;
 }
 
 const int Table::getSeats() const {
@@ -46,8 +43,8 @@ void Table::setTableNum(int tableNum) {
     tableNumber = tableNum;
 }
 
-void Table::adjustLeftoverSeats(int availableSeats) {
-    numSeats = numSeats-availableSeats;
+void Table::adjustLeftoverSeats(int takenSeats) {
+    numSeats = numSeats-takenSeats;
 }
 
 const bool Table::getAvailability() {
@@ -64,7 +61,7 @@ const double Table::getBill() const {
     return billAmount;
 }
 
-void Table::setBillAmount(int value) {
+void Table::setBillAmount(double value) {
     billAmount = value;
 }
 

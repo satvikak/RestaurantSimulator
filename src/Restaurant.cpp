@@ -254,7 +254,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
 
         //create bill
         
-        int billTotalAmount = 0;
+        double billTotalAmount = 0;
         for(int i=0; i<customerOrders.size(); ++i) {
             billTotalAmount+=m.getPriceOfChosenMenuItem((customerOrders.at(i)).getItemNumber());
         }
@@ -365,7 +365,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
                 cout << endl;
 
                 if (userChoice == "q") {
-                    cout << "Hope you had fun role-playing in a restaurant! Until next time! 👋" << endl << endl;
+                    cout << "We hope you had fun playing Restaurant Simulator! Until next time! 👋" << endl << endl;
                     m.clearFullMenu();
 
                     return; //end game

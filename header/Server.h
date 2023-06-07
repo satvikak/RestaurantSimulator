@@ -13,6 +13,8 @@ class Server : public Employee  {
     public:
         Server();
         ~Server();
+        void setChosenTable(Table* myTable);
+        Table* getChosenTable() const;
         void seatCustomer(int itemsForCustomer, int userNumTables);
         vector<OrderNode>& takeOrder();
         void serveCustomer(int customerNum, string nameItem);
@@ -20,7 +22,7 @@ class Server : public Employee  {
         void openUpTables(int userNum);
         void clearUsedTables();
         void printCustomerOrders(vector<OrderNode>& ordersList);
-        void billTable(int totalPrice);
+        void billTable(double totalPrice);
         void removeOrders();
         int getMistakes() const;
     

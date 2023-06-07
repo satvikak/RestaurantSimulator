@@ -22,6 +22,14 @@ Server::~Server() {
     delete[] myTables;
 }
 
+Table* Server::getChosenTable() const {
+    return chosenTable;
+}
+
+void Server::setChosenTable(Table* myTable) {
+    chosenTable = myTable;
+}
+
 void Server::seatCustomer(int itemsForCustomer, int userNumTables) {
     Customer* newCustomers = new Customer(names, itemsForCustomer);
     int groupSize = newCustomers->getGroupSize();
@@ -59,12 +67,12 @@ void Server::seatCustomer(int itemsForCustomer, int userNumTables) {
                 }
             }
         } while (!myTables[chosenTableNumber-1]->getAvailability() || input == "n");
-        chosenTable = myTables[chosenTableNumber-1];
-        chosenTable->setCustomerGroup(newCustomers);
-        chosenTable->adjustLeftoverSeats(groupSize);
-        chosenTable->setTableNum(chosenTableNumber);
-        chosenTable->setEntryTime(chrono::steady_clock::now());
-        tablesToClear.push_back(chosenTable->getTableNum());
+        setChosenTable(myTables[chosenTableNumber-1]);
+        getChosenTable()->setCustomerGroup(newCustomers);
+        getChosenTable()->adjustLeftoverSeats(groupSize);
+        getChosenTable()->setTableNum(chosenTableNumber);
+        getChosenTable()->setEntryTime(chrono::steady_clock::now());
+        tablesToClear.push_back((getChosenTable())->getTableNum());
 }
 
 vector<OrderNode>& Server::takeOrder() {
@@ -95,7 +103,7 @@ void Server::printCustomerOrders(vector<OrderNode>& ordersList) {
         ordersList.at(i).printOrder();
     }
 }
-void Server::billTable(int totalPrice) {
+void Server::billTable(double totalPrice) {
     chosenTable->setBillAmount(totalPrice);
 }
 
