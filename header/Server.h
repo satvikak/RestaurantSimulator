@@ -15,6 +15,9 @@ class Server : public Employee  {
         ~Server();
         void setChosenTable(Table* myTable);
         Table* getChosenTable() const;
+        Table** getMyTables() const;
+        vector<OrderNode> getOrder() const;
+        void setOrder(vector<OrderNode>& ordersList);
         void seatCustomer(int itemsForCustomer, int userNumTables);
         vector<OrderNode>& takeOrder();
         void serveCustomer(int customerNum, string nameItem);
@@ -25,6 +28,7 @@ class Server : public Employee  {
         void billTable(double totalPrice);
         void removeOrders();
         int getMistakes() const;
+        void addMistakes(int mistakes);
     
     private:
         Table** myTables;

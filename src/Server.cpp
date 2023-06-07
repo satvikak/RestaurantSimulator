@@ -22,6 +22,10 @@ Server::~Server() {
     delete[] myTables;
 }
 
+Table** Server::getMyTables() const {
+    return myTables;
+}
+
 Table* Server::getChosenTable() const {
     return chosenTable;
 }
@@ -92,6 +96,19 @@ vector<OrderNode>& Server::takeOrder() {
     return ordersCreation;
 }
 
+vector<OrderNode> Server::getOrder() const {
+    return ordersCreation;
+}
+
+void Server::setOrder(vector<OrderNode>& ordersList) {
+    if(ordersCreation.size()>0) {
+        removeOrders();
+    }
+    for(unsigned int i=0; i<ordersList.size(); ++i) {
+        ordersCreation.push_back(ordersList.at(i));
+    }
+}
+
 void Server::removeOrders() {
     while(ordersCreation.size()!=0) {
         ordersCreation.pop_back();
@@ -133,12 +150,12 @@ void Server::serveCustomer(int customerNum, string nameItem) {
             cout<<"Item Name: ";
             getline(cin, userGuess);
             cout<<endl;
-            numMistakes++;
+            addMistakes(1);
             numTries++;
         }
         else {
             cout << "That's Incorrect. Balance and Rating Decreased. ❌" << endl;
-            numMistakes++;
+            addMistakes(1);
             numTries++;
             cout<<"Serving "<<(ordersCreation.at(customerNum)).getCustomerName()<<" their actual order."<<endl <<endl;
         }
@@ -165,9 +182,13 @@ void Server::clearUsedTables() {
     }
 }
 
-int Server::getMistakes() const{
+int Server::getMistakes() const {
     return numMistakes;
 }
+
+void Server::addMistakes(int mistakes) {
+    numMistakes+=mistakes;
+} 
 
 void Server::printCharacterDetails() {
     string name;
