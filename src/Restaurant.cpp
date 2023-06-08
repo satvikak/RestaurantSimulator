@@ -346,7 +346,16 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
         cout << "Looks like the party just finished their meal and paid the bill..." << endl;
         cout << "Congrats! You made $" << billTotalAmount << " dollars for your restaurant. 💰" << endl << endl;
         this->setBalance(this->getBalance() + billTotalAmount);
-            
+
+        //adjust average rating
+        int totalMistakes = c.getMistakes() + s.getMistakes();
+        double customerRating = generateRating(totalMistakes);
+        cout << "This group gave your restaurant a rating of " << customerRating << " stars ⭐" << endl << endl;
+        this->setAverageRating(customerRating);
+
+        //adjust balance according to mistakes - 5% decrease for every mistake
+        int newBalance = this->getBalance() - (this->getBalance() * 0.05 * totalMistakes);
+        this->setBalance(newBalance);
 
             //evaluate results (check balance, rating, etc) and go back to start if results pass
             cout << this->getRestaurantName() << " Review: " << this->getRating() << "/5 Stars ⭐" << endl;
@@ -382,6 +391,21 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             return; //end game
         }
     }
+}
+
+double Restaurant::generateRating(int numberOfMistakes) {
+    if (numberOfMistakes == 0) {
+        return 5;
+    }
+    double rating = rand() % 6 + (50 - 5 * numberOfMistakes);
+    rating = rating / 10;
+    return rating;
+}
+
+void Restaurant::setAverageRating(int newRating) {
+    int totalRating = this->getRating() + newRating;
+    totalRating = totalRating / 2;
+    this->setRating(totalRating);
 }
 
 string Restaurant::validateStringInput(string userInput, int num) {
