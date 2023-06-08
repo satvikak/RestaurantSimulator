@@ -6,6 +6,11 @@
 
 #include "../header/Chef.h"
 
+TEST(ChefConstructorTests, noParameters) {
+    Chef c = Chef();
+    EXPECT_EQ(c.getMistakes(), 0);
+}
+
 TEST(ChefGetter, getMistakes) {
     Chef c;
     int mistakes = c.getMistakes();
