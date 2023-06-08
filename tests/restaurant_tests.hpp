@@ -105,4 +105,33 @@ TEST(RestaurantDoubleValid, upperBound) {
     EXPECT_EQ(rest.validateDoubleInput(input, 1), 1000.0);
 }
 
+TEST(RatingTests, generatePerfectCustomerRating) {
+    Restaurant rest;
+    double rating = rest.generateRating(0);
+    EXPECT_TRUE(rating == 5);
+}
+
+TEST(RatingTests, generateImperfectCustomerRating) {
+    Restaurant rest;
+    double rating = rest.generateRating(1);
+    EXPECT_TRUE(rating >= 4.5);
+    EXPECT_TRUE(rating <= 5.0);
+    rating = rest.generateRating(2);
+    EXPECT_TRUE(rating >= 4.0);
+    EXPECT_TRUE(rating <= 4.5);
+    rating = rest.generateRating(3);
+    EXPECT_TRUE(rating >= 3.5);
+    EXPECT_TRUE(rating <= 4.0);
+}
+
+TEST(RatingTest, generateLargeMistakeRating) {
+    Restaurant rest;
+    double rating = rest.generateRating(5);
+    EXPECT_TRUE(rating >= 2.5);
+    EXPECT_TRUE(rating <= 3.0);
+    rating = rest.generateRating(10);
+    EXPECT_TRUE(rating >= 0);
+    EXPECT_TRUE(rating <= 0.5);
+}
+
 #endif

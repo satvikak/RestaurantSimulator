@@ -24,6 +24,8 @@ class Restaurant {
         void displayFloorPlan(int userNum);
         //void createTablesArray(int userNum);
         void simulateRestaurant();
+        double generateRating(int numberOfMistakes);
+        void setAverageRating(int newRating);
         string validateStringInput(string userInput, int num);
         int validateIntInput(int userInput, int num, int upperBound);
         double validateDoubleInput(double userInput, int num);
