@@ -77,7 +77,7 @@ To make the order itself, the chef will type what is prompted to the screen exac
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
-<img width="784" alt="SS1" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/37186d41-ad8e-4c83-82aa-a0bf6123f581">
+<img width="784" alt="SS1" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/02bf36a4-43ba-4513-8bbf-df6049043a1c">
 <img width="784" alt="SS2" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/11d31c17-1b96-4318-a7c7-dd73bd1cdb22">
 <img width="784" alt="SS3" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/51c62b9b-3f26-454d-8031-7296de25b5e6">
 <img width="784" alt="SS4" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/c0c02655-4fc5-4a66-ba01-1364d2dcf73f">

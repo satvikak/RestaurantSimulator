@@ -20,13 +20,4 @@ class OrderNode {
         string customerName;
 };
 
-// struct OrderNode {
-//     int itemNumber;
-//     string customerName;
-
-//     const void printOrder() {
-//     }
-    
-// };
-
 #endif
