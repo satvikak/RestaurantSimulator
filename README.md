@@ -77,15 +77,310 @@ To make the order itself, the chef will type what is prompted to the screen exac
 
  ## Installation/Usage
  Clone this repository using the following commands in the terminal:
- ```sh
+ ```
 $ git clone https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035.git
 $ cd final-project-skamm006-sbhan020-schau062-vsing035
 $ cmake .
 $ make
 ```
 Two executables will be created (test & play). Run the play executable to play the game:
- ```sh
+ ```
 $ ./play
 ```
  ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+ After following the steps in the **Installation/Usage** section, the unit tests for this project can be run using `./test`. These tests are used to ensure that our various classes are working as we expect them to. In this project, we utilized 69 tests across 35 different suites. Each suite tests a specific function in its respective class.
+ 
+ We also utilized Valgrind to ensure that all memory allocated in the main program or unit tests was properly deallocated. We ran Valgrind on the executable for our program, `./play`, as well as on the executable for our tests, `./test`. These checks can be run using `valgrind --leak-check=full ./play` or `valgrind --leak-check=full ./test` respectively. 
+ 
+ <details><summary>Example of Valgrind results on main program</summary>
+ <p>
+  
+ ```$ valgrind --leak-check=full ./play
+==414788== Memcheck, a memory error detector
+==414788== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==414788== Using Valgrind-3.21.0 and LibVEX; rerun with -h for copyright info
+==414788== Command: ./play
+==414788==
+
+**Restaurant Gameplay**  
+
+==414788== 
+==414788== HEAP SUMMARY:
+==414788==     in use at exit: 0 bytes in 0 blocks
+==414788==   total heap usage: 29 allocs, 29 frees, 77,122 bytes allocated
+==414788== 
+==414788== All heap blocks were freed -- no leaks are possible
+==414788== 
+==414788== For lists of detected and suppressed errors, rerun with: -s
+==414788== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
+</details>
+ 
+<details><summary>Example of Valgrind results on unit tests</summary>
+<p>
+  
+ ```$ valgrind --leak-check=full ./test
+==352733== Memcheck, a memory error detector
+==352733== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==352733== Using Valgrind-3.21.0 and LibVEX; rerun with -h for copyright info
+==352733== Command: ./test
+==352733== 
+[==========] Running 69 tests from 35 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from ChefConstructorTests
+[ RUN      ] ChefConstructorTests.noParameters
+[       OK ] ChefConstructorTests.noParameters (13 ms)
+[----------] 1 test from ChefConstructorTests (20 ms total)
+
+[----------] 1 test from ChefGetter
+[ RUN      ] ChefGetter.getMistakes
+[       OK ] ChefGetter.getMistakes (1 ms)
+[----------] 1 test from ChefGetter (1 ms total)
+
+[----------] 2 tests from CustomerConstructor
+[ RUN      ] CustomerConstructor.ThreeParameters
+[       OK ] CustomerConstructor.ThreeParameters (8 ms)
+[ RUN      ] CustomerConstructor.TwoParameters
+[       OK ] CustomerConstructor.TwoParameters (6 ms)
+[----------] 2 tests from CustomerConstructor (14 ms total)
+
+[----------] 2 tests from CustomerRandomTests
+[ RUN      ] CustomerRandomTests.GenerateOneRandomOrder
+[       OK ] CustomerRandomTests.GenerateOneRandomOrder (5 ms)
+[ RUN      ] CustomerRandomTests.GenerateListOfRandomOrders
+[       OK ] CustomerRandomTests.GenerateListOfRandomOrders (13 ms)
+[----------] 2 tests from CustomerRandomTests (19 ms total)
+
+[----------] 2 tests from CustomerGetterSetterTests
+[ RUN      ] CustomerGetterSetterTests.getGroupSizeTest
+[       OK ] CustomerGetterSetterTests.getGroupSizeTest (5 ms)
+[ RUN      ] CustomerGetterSetterTests.setNumberofMenuItems
+[       OK ] CustomerGetterSetterTests.setNumberofMenuItems (3 ms)
+[----------] 2 tests from CustomerGetterSetterTests (8 ms total)
+
+[----------] 1 test from ManagerConstructorTest
+[ RUN      ] ManagerConstructorTest.NoNodes
+[       OK ] ManagerConstructorTest.NoNodes (1 ms)
+[----------] 1 test from ManagerConstructorTest (1 ms total)
+
+[----------] 2 tests from ManagerEmptyMenuTest
+[ RUN      ] ManagerEmptyMenuTest.OneNodeFull
+[       OK ] ManagerEmptyMenuTest.OneNodeFull (3 ms)
+[ RUN      ] ManagerEmptyMenuTest.TwoNodeEmpty
+[       OK ] ManagerEmptyMenuTest.TwoNodeEmpty (4 ms)
+[----------] 2 tests from ManagerEmptyMenuTest (7 ms total)
+
+[----------] 1 test from ManagerPriceChangeTest
+[ RUN      ] ManagerPriceChangeTest.ChangeMenuPrice
+[       OK ] ManagerPriceChangeTest.ChangeMenuPrice (4 ms)
+[----------] 1 test from ManagerPriceChangeTest (4 ms total)
+
+[----------] 1 test from ManagerMenuNumTest
+[ RUN      ] ManagerMenuNumTest.LastMenuNumber
+[       OK ] ManagerMenuNumTest.LastMenuNumber (4 ms)
+[----------] 1 test from ManagerMenuNumTest (4 ms total)
+
+[----------] 4 tests from MenuItemGetters
+[ RUN      ] MenuItemGetters.getMenuNumber
+[       OK ] MenuItemGetters.getMenuNumber (1 ms)
+[ RUN      ] MenuItemGetters.getFoodType
+[       OK ] MenuItemGetters.getFoodType (2 ms)
+[ RUN      ] MenuItemGetters.getFoodItem
+[       OK ] MenuItemGetters.getFoodItem (1 ms)
+[ RUN      ] MenuItemGetters.getFoodPrice
+[       OK ] MenuItemGetters.getFoodPrice (1 ms)
+[----------] 4 tests from MenuItemGetters (7 ms total)
+
+[----------] 1 test from MenuItemSetters
+[ RUN      ] MenuItemSetters.setFoodPrice
+[       OK ] MenuItemSetters.setFoodPrice (2 ms)
+[----------] 1 test from MenuItemSetters (2 ms total)
+
+[----------] 1 test from MenuItemConstructor
+[ RUN      ] MenuItemConstructor.paramConstructor
+[       OK ] MenuItemConstructor.paramConstructor (4 ms)
+[----------] 1 test from MenuItemConstructor (4 ms total)
+
+[----------] 1 test from OrderNodeConstructorTests
+[ RUN      ] OrderNodeConstructorTests.noParameters
+[       OK ] OrderNodeConstructorTests.noParameters (2 ms)
+[----------] 1 test from OrderNodeConstructorTests (2 ms total)
+
+[----------] 2 tests from OrderNodeGetterTests
+[ RUN      ] OrderNodeGetterTests.getItemNumber
+[       OK ] OrderNodeGetterTests.getItemNumber (1 ms)
+[ RUN      ] OrderNodeGetterTests.getCustomerName
+[       OK ] OrderNodeGetterTests.getCustomerName (1 ms)
+[----------] 2 tests from OrderNodeGetterTests (3 ms total)
+
+[----------] 2 tests from OrderNodeSetterTests
+[ RUN      ] OrderNodeSetterTests.setItemNumber
+[       OK ] OrderNodeSetterTests.setItemNumber (1 ms)
+[ RUN      ] OrderNodeSetterTests.setCustomerName
+[       OK ] OrderNodeSetterTests.setCustomerName (2 ms)
+[----------] 2 tests from OrderNodeSetterTests (4 ms total)
+
+[----------] 3 tests from RestaurantGetters
+[ RUN      ] RestaurantGetters.getName
+[       OK ] RestaurantGetters.getName (18 ms)
+[ RUN      ] RestaurantGetters.getBalance
+[       OK ] RestaurantGetters.getBalance (1 ms)
+[ RUN      ] RestaurantGetters.getRating
+[       OK ] RestaurantGetters.getRating (1 ms)
+[----------] 3 tests from RestaurantGetters (22 ms total)
+
+[----------] 3 tests from RestaurantSetters
+[ RUN      ] RestaurantSetters.setName
+[       OK ] RestaurantSetters.setName (2 ms)
+[ RUN      ] RestaurantSetters.setBalance
+[       OK ] RestaurantSetters.setBalance (1 ms)
+[ RUN      ] RestaurantSetters.setRating
+[       OK ] RestaurantSetters.setRating (1 ms)
+[----------] 3 tests from RestaurantSetters (6 ms total)
+
+[----------] 4 tests from RestaurantStringValid
+[ RUN      ] RestaurantStringValid.foodType
+[       OK ] RestaurantStringValid.foodType (4 ms)
+[ RUN      ] RestaurantStringValid.yesNo
+[       OK ] RestaurantStringValid.yesNo (3 ms)
+[ RUN      ] RestaurantStringValid.yes
+[       OK ] RestaurantStringValid.yes (2 ms)
+[ RUN      ] RestaurantStringValid.contQuit
+[       OK ] RestaurantStringValid.contQuit (3 ms)
+[----------] 4 tests from RestaurantStringValid (13 ms total)
+
+[----------] 2 tests from RestaurantIntValid
+[ RUN      ] RestaurantIntValid.lowerBound
+[       OK ] RestaurantIntValid.lowerBound (1 ms)
+[ RUN      ] RestaurantIntValid.upperBound
+[       OK ] RestaurantIntValid.upperBound (1 ms)
+[----------] 2 tests from RestaurantIntValid (3 ms total)
+
+[----------] 2 tests from RestaurantDoubleValid
+[ RUN      ] RestaurantDoubleValid.lowerBound
+[       OK ] RestaurantDoubleValid.lowerBound (2 ms)
+[ RUN      ] RestaurantDoubleValid.upperBound
+[       OK ] RestaurantDoubleValid.upperBound (1 ms)
+[----------] 2 tests from RestaurantDoubleValid (4 ms total)
+
+[----------] 2 tests from RatingTests
+[ RUN      ] RatingTests.generatePerfectCustomerRating
+[       OK ] RatingTests.generatePerfectCustomerRating (2 ms)
+[ RUN      ] RatingTests.generateImperfectCustomerRating
+[       OK ] RatingTests.generateImperfectCustomerRating (5 ms)
+[----------] 2 tests from RatingTests (7 ms total)
+
+[----------] 1 test from RatingTest
+[ RUN      ] RatingTest.generateLargeMistakeRating
+[       OK ] RatingTest.generateLargeMistakeRating (3 ms)
+[----------] 1 test from RatingTest (3 ms total)
+
+[----------] 1 test from ServerConstructorTests
+[ RUN      ] ServerConstructorTests.noParameters
+[       OK ] ServerConstructorTests.noParameters (3 ms)
+[----------] 1 test from ServerConstructorTests (3 ms total)
+
+[----------] 4 tests from ServerGetterTests
+[ RUN      ] ServerGetterTests.getChosenTable
+[       OK ] ServerGetterTests.getChosenTable (1 ms)
+[ RUN      ] ServerGetterTests.getMyTables
+[       OK ] ServerGetterTests.getMyTables (1 ms)
+[ RUN      ] ServerGetterTests.getOrder
+[       OK ] ServerGetterTests.getOrder (7 ms)
+[ RUN      ] ServerGetterTests.getMistakes
+[       OK ] ServerGetterTests.getMistakes (2 ms)
+[----------] 4 tests from ServerGetterTests (14 ms total)
+
+[----------] 3 tests from ServerSetterTests
+[ RUN      ] ServerSetterTests.setChosenTable
+[       OK ] ServerSetterTests.setChosenTable (3 ms)
+[ RUN      ] ServerSetterTests.setOrder
+[       OK ] ServerSetterTests.setOrder (3 ms)
+[ RUN      ] ServerSetterTests.setMistakes
+[       OK ] ServerSetterTests.setMistakes (1 ms)
+[----------] 3 tests from ServerSetterTests (8 ms total)
+
+[----------] 2 tests from ServerRemoveOrdersTests
+[ RUN      ] ServerRemoveOrdersTests.emptyOrder
+[       OK ] ServerRemoveOrdersTests.emptyOrder (2 ms)
+[ RUN      ] ServerRemoveOrdersTests.semiFullOrder
+[       OK ] ServerRemoveOrdersTests.semiFullOrder (3 ms)
+[----------] 2 tests from ServerRemoveOrdersTests (6 ms total)
+
+[----------] 2 tests from ServerBillTableTests
+[ RUN      ] ServerBillTableTests.intBill
+[       OK ] ServerBillTableTests.intBill (2 ms)
+[ RUN      ] ServerBillTableTests.doubleBill
+[       OK ] ServerBillTableTests.doubleBill (2 ms)
+[----------] 2 tests from ServerBillTableTests (4 ms total)
+
+[----------] 1 test from ServerOpenTablesTest
+[ RUN      ] ServerOpenTablesTest.openTables
+[       OK ] ServerOpenTablesTest.openTables (3 ms)
+[----------] 1 test from ServerOpenTablesTest (3 ms total)
+
+[----------] 3 tests from TableGetterTests
+[ RUN      ] TableGetterTests.getSeats
+[       OK ] TableGetterTests.getSeats (1 ms)
+[ RUN      ] TableGetterTests.getTableNum
+[       OK ] TableGetterTests.getTableNum (1 ms)
+[ RUN      ] TableGetterTests.getCustomerGroup
+[       OK ] TableGetterTests.getCustomerGroup (1 ms)
+[----------] 3 tests from TableGetterTests (5 ms total)
+
+[----------] 3 tests from TableSetterTests
+[ RUN      ] TableSetterTests.setSeats
+[       OK ] TableSetterTests.setSeats (1 ms)
+[ RUN      ] TableSetterTests.setTableNum
+[       OK ] TableSetterTests.setTableNum (1 ms)
+[ RUN      ] TableSetterTests.setCustomerGroup
+[       OK ] TableSetterTests.setCustomerGroup (2 ms)
+[----------] 3 tests from TableSetterTests (6 ms total)
+
+[----------] 1 test from TableConstructorTests
+[ RUN      ] TableConstructorTests.noParameters
+[       OK ] TableConstructorTests.noParameters (3 ms)
+[----------] 1 test from TableConstructorTests (3 ms total)
+
+[----------] 2 tests from TableLeftoverSeatsTests
+[ RUN      ] TableLeftoverSeatsTests.emptyTable
+[       OK ] TableLeftoverSeatsTests.emptyTable (2 ms)
+[ RUN      ] TableLeftoverSeatsTests.takenTable
+[       OK ] TableLeftoverSeatsTests.takenTable (2 ms)
+[----------] 2 tests from TableLeftoverSeatsTests (4 ms total)
+
+[----------] 3 tests from TableAvailablityTests
+[ RUN      ] TableAvailablityTests.fullyAvailable
+[       OK ] TableAvailablityTests.fullyAvailable (2 ms)
+[ RUN      ] TableAvailablityTests.partiallyNotAvailable
+[       OK ] TableAvailablityTests.partiallyNotAvailable (2 ms)
+[ RUN      ] TableAvailablityTests.fullyNotAvailable
+[       OK ] TableAvailablityTests.fullyNotAvailable (2 ms)
+[----------] 3 tests from TableAvailablityTests (8 ms total)
+
+[----------] 2 tests from TableBillTests
+[ RUN      ] TableBillTests.intBill
+[       OK ] TableBillTests.intBill (2 ms)
+[ RUN      ] TableBillTests.doubleBill
+[       OK ] TableBillTests.doubleBill (2 ms)
+[----------] 2 tests from TableBillTests (4 ms total)
+
+[----------] 1 test from TableTimeTests
+[ RUN      ] TableTimeTests.positiveDuration
+[       OK ] TableTimeTests.positiveDuration (1003 ms)
+[----------] 1 test from TableTimeTests (1004 ms total)
+
+[----------] Global test environment tear-down
+[==========] 69 tests from 35 test suites ran. (1323 ms total)
+[  PASSED  ] 69 tests.
+==352733== 
+==352733== HEAP SUMMARY:
+==352733==     in use at exit: 0 bytes in 0 blocks
+==352733==   total heap usage: 1,980 allocs, 1,980 frees, 307,567 bytes allocated
+==352733== 
+==352733== All heap blocks were freed -- no leaks are possible
+==352733== 
+==352733== For lists of detected and suppressed errors, rerun with: -s
+==352733== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
+</detals>
