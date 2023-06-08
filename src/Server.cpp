@@ -146,6 +146,7 @@ void Server::serveCustomer(int customerNum, string nameItem) {
         }
         else if(numTries == 1) {
             userGuess = "";
+            userGuessLower = "";
             cout << "That's Incorrect. Try Again. 👎" << endl;
             cout<<"Item Name: ";
             getline(cin, userGuess);
