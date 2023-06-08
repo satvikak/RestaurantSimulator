@@ -246,8 +246,6 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             vector<OrderNode> customerOrders;
             s.removeOrders();
             customerOrders = s.takeOrder();
-            // newCustomers->generateOrders(customerOrders.getOrdersList());
-            //customerOrders.printOrders();
 
             cout << endl;
             cout << "Wonderful! Now that you have the orders, it's time for the chef to make the items... 🍲" << endl;
@@ -399,6 +397,9 @@ double Restaurant::generateRating(int numberOfMistakes) {
     }
     double rating = rand() % 6 + (50 - 5 * numberOfMistakes);
     rating = rating / 10;
+    if (rating < 0) {
+        return 0;
+    }
     return rating;
 }
 

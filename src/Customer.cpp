@@ -57,9 +57,22 @@ void Customer::setRandomPartySize() {
 }
 
 void Customer::setRandomNames(vector<string>& names) {
+    vector<int> chosenValues;
     for (int i = 0; i < groupSize; i++) {
-        int nameIndex = rand() % names.size();       // random number from 0 to (1 - names.size())
+        int nameIndex = 0;
+        bool duplicate = false;
+        do {
+            duplicate = false;
+            nameIndex = rand() % names.size();
+            for (int i = 0; i < chosenValues.size(); i++) {
+                if (nameIndex == chosenValues.at(i)) {
+                    duplicate = true;
+                    break;
+                }
+            }
+        } while (duplicate);
         customerNames.push_back(names.at(nameIndex));
+        chosenValues.push_back(nameIndex);
     }
 }
 
