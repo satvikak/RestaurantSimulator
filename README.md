@@ -57,11 +57,11 @@ To make the order itself, the chef will type what is prompted to the screen exac
 <img width="517" alt="Screenshot 2023-06-06 at 2 52 11 PM" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/8ef10770-f7be-4788-98c3-2d7485956f43">
 
 ## Screen Layout
-<img width="583" alt="Pic1" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/41afbdf2-1a01-4471-9970-1a0456ff1db9">
-<img width="583" alt="Pic2" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/aacd2d34-d9a3-4b52-8cc4-3f81b5a02be0">
-<img width="583" alt="Pic3" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/ba6aa4db-48bf-4ff2-9078-2467267faea3">
-<img width="583" alt="Pic4" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/a3a3596d-7add-44ec-aa53-cf0bcac07b1c">
- 
+<img width="579" alt="1" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/afb4767d-3975-4ab2-953e-4377638d4e77">
+<img width="579" alt="2" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/6b3d6a01-0f49-43f7-acdb-16a98492e693">
+<img width="579" alt="3" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/ea56ffda-5398-45c8-a2b5-d81f00002dfc">
+<img width="579" alt="4" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/1117024f-bf06-4497-add3-034cb67af889">
+
  ## Phase III (SOLID Principle Changes)
 * For our first major change, we applied the Single Responsibility Principle (SRP). When first designing the UML diagram, we intended for the Server to have some type of implementation for taking a Customer’s order. However, we decided to take our TA’s suggestion of making a separate Order class since it is something that may be utilized by multiple classes. For instance, the Server class uses the Order class to keep track of the Customers’ orders, the Chef class uses it to make the dish, and the Server must use it to serve the Customers their respective dishes. Keeping this in mind, it did not make sense to implement the Order class within the Server class, so we developed a whole new class instead. This change was helpful in managing the tasks of each individual. The Server and Chef do not need to worry about implementing their own Order, but can now use the class while focusing on their respective tasks. In fact, now it is also easier for the Customers’ information and data to be passed between the Server and the Chef as it is a class that is accessible by the both of them.
 
@@ -77,10 +77,10 @@ To make the order itself, the chef will type what is prompted to the screen exac
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
-<img width="784" alt="SS1" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/02bf36a4-43ba-4513-8bbf-df6049043a1c">
-<img width="784" alt="SS2" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/11d31c17-1b96-4318-a7c7-dd73bd1cdb22">
-<img width="784" alt="SS3" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/51c62b9b-3f26-454d-8031-7296de25b5e6">
-<img width="784" alt="SS4" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/c0c02655-4fc5-4a66-ba01-1364d2dcf73f">
+<img width="901" alt="ss1" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/92c18322-1ec1-40b4-be43-202d059e44b6">
+<img width="901" alt="ss2" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/d9eb6f94-d8db-4298-85d8-a57d5aeae8dc">
+<img width="901" alt="ss3" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/e8f19688-4a33-4669-b917-c7ed37375d1b">
+<img width="901" alt="ss4" src="https://github.com/cs100/final-project-skamm006-sbhan020-schau062-vsing035/assets/117537786/e24a75e6-a70b-4054-8362-b92472e688af">
 
  ## Installation/Usage
  Clone this repository using the following commands in the terminal:
