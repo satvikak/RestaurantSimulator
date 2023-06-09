@@ -142,6 +142,7 @@ void Restaurant::simulateRestaurant() {         //Simulates Restaurant game
             cout << endl;
             cout << "Enter the number of tables you would like in your restaurant: ";
             cin >> numTables;
+            numTables = validateIntInput(numTables, 1, 100);
             cout << endl;
             s.openUpTables(numTables);
         }
